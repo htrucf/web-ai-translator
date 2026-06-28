@@ -1,0 +1,409 @@
+Minh họa khả năng hỗ trợ DOCX trong calibre
+
+Tài liệu này minh họa khả năng của plugin DOCX Input của calibre trong việc chuyển đổi nhiều đặc điểm trình bày chữ trong tài liệu Microsoft Word (2007 trở lên). Hãy chuyển đổi tài liệu này sang một định dạng sách điện tử hiện đại, chẳng hạn AZW3 cho Kindle hoặc EPUB cho các thiết bị đọc sách điện tử khác, để xem tính năng này hoạt động.
+
+Tài liệu hỗ trợ hình ảnh, bảng, danh sách, chú thích cuối trang, chú thích cuối tài liệu, liên kết, chữ cái đầu dòng và nhiều kiểu định dạng văn bản cũng như định dạng cấp đoạn văn.
+
+Để xem quá trình chuyển đổi DOCX hoạt động, chỉ cần thêm tệp này vào calibre bằng nút “Add Books” rồi nhấp vào “Convert”.  Đặt định dạng đầu ra ở góc trên bên phải của hộp thoại chuyển đổi thành EPUB hoặc AZW3 rồi nhấp vào “OK”.
+
+Định dạng văn bản
+
+Định dạng nội dòng
+
+Ở đây, chúng tôi minh họa nhiều kiểu định dạng văn bản nội dòng và cách sử dụng phông chữ nhúng.
+
+Đây là một số văn bản in đậm, in nghiêng, in đậm-nghiêng, gạch chân và gạch bỏ văn bản. Tiếp theo, chúng ta có chỉ số trên và chỉ số dưới. Bây giờ chúng ta thấy một số chữ màu đỏ, xanh lá và xanh dương. Một số văn bản có tô sáng vàng. Một số văn bản nằm trong khung. Một số văn bản ở chế độ đảo màu.
+
+Một đoạn văn có văn bản dùng kiểu định dạng: nhấn mạnh nhẹ  tiếp theo là văn bản nhấn mạnh và nhấn mạnh mạnh. Đoạn văn này dùng các kiểu định dạng áp dụng trong toàn tài liệu để định dạng, thay vì dùng thuộc tính văn bản nội dòng như minh họa ở đoạn trước - calibre có thể xử lý cả hai cách dễ dàng như nhau.
+
+Thử nghiệm với phông chữ
+
+Tài liệu này đã nhúng họ phông Ubuntu. Phần thân văn bản dùng kiểu chữ Ubuntu; đây là một đoạn văn bản ở kiểu chữ Ubuntu Mono; hãy chú ý rằng mọi ký tự đều có cùng độ rộng, kể cả i và m. Mọi phông chữ được nhúng sẽ tự động được nhúng vào sách điện tử đầu ra trong quá trình chuyển đổi.
+
+Định dạng cấp đoạn văn
+
+Bạn có thể tạo những hiệu ứng rất khác lạ cho đoạn văn nếu muốn. Chẳng hạn, đoạn văn này được căn phải và có đường viền bên phải. Nó cũng được đặt nền màu xám nhạt.
+
+Với những người yêu thơ, các đoạn văn có thụt đầu dòng treo như thế này thường rất hữu ích. Bạn có thể dùng thụt đầu dòng treo để bảo đảm một dòng thơ vẫn giữ được bản sắc riêng của nó như một dòng độc lập, ngay cả khi màn hình quá hẹp để hiển thị dòng đó trên một dòng duy nhất. Đoạn văn này không chỉ có thụt đầu dòng treo mà còn có thêm khoảng cách phía trên, giúp nó tách biệt với đoạn trước.
+
+Bảng
+
+Bảng trong Word có thể dao động từ cực kỳ đơn giản đến cực kỳ phức tạp. calibre cố gắng xử lý tốt nhất có thể khi chuyển đổi bảng. Dù đôi khi bạn có thể gặp vấn đề với một số bảng, phần lớn các trường hợp phổ biến sẽ được chuyển đổi rất tốt, như được minh họa trong phần này. Lưu ý rằng để có kết quả tối ưu, khi tạo bảng trong Word, bạn nên đặt độ rộng của bảng bằng tỷ lệ phần trăm thay vì đơn vị tuyệt đối.  Ở bên trái đoạn văn này là một bảng nổi gồm hai cột, có đường viền màu xanh lá đẹp mắt và hàng tiêu đề.
+
+Bây giờ hãy xem một bảng cầu kỳ hơn - bảng có màu hàng xen kẽ và đường viền một phần. Bảng này được kéo giãn để chiếm 100% chiều rộng khả dụng.
+
+Tiếp theo, chúng ta thấy một bảng có định dạng đặc biệt ở nhiều vị trí. Hãy chú ý cách định dạng cho hàng tiêu đề và các hàng tiêu đề phụ được giữ nguyên.
+
+Nguồn: Dữ liệu giả định, chỉ dùng cho mục đích minh họa
+
+Tiếp theo, chúng ta có một nội dung phức tạp hơn một chút: bảng lồng nhau, tức là một bảng nằm bên trong một bảng khác. Ngoài ra, bảng bên trong có một số ô được gộp. Bảng được hiển thị căn giữa theo chiều ngang.
+
+Chúng ta kết thúc bằng một lịch cầu kỳ; hãy chú ý phần lớn định dạng gốc được giữ nguyên như thế nào. Lưu ý rằng bảng này chỉ hiển thị đúng trên các màn hình tương đối rộng. Nhìn chung, các bảng rất rộng hoặc các bảng có ô yêu cầu độ rộng cố định thường không hoạt động tốt trong sách điện tử.
+
+Thành phần cấu trúc
+
+Một số thành phần cấu trúc khác mà bạn có thể thêm vào tài liệu, như chú thích cuối trang, chú thích cuối tài liệu, chữ cái đầu dòng và các thành phần tương tự.
+
+Chú thích cuối trang & chú thích cuối tài liệu
+
+Chú thích cuối trang và chú thích cuối tài liệu được tự động nhận diện và cả hai đều được chuyển đổi thành chú thích cuối tài liệu, kèm liên kết quay lại để sử dụng thuận tiện nhất trên thiết bị đọc sách điện tử.
+
+Chữ cái đầu dòng
+
+C
+
+hữ cái đầu dòng được dùng để nhấn mạnh đoạn mở đầu ở đầu một phần. Trong Word, có thể quy định chữ cái đầu dòng chiếm bao nhiêu dòng văn bản. Do hạn chế của công nghệ sách điện tử, điều này không thể thực hiện khi chuyển đổi. Thay vào đó, chữ cái đầu dòng sau chuyển đổi sẽ dùng cỡ chữ và chiều cao dòng để mô phỏng hiệu ứng tốt nhất có thể. Tuy không tốt bằng bản gốc, kết quả thường vẫn chấp nhận được. Đoạn văn này có chữ cái đầu dòng “C” chiếm ba dòng văn bản với cỡ chữ 58,5 pt. Tùy thuộc vào độ rộng màn hình và khả năng của thiết bị dùng để xem sách, chữ cái đầu dòng này có thể trông từ hoàn hảo đến xấu.
+
+Liên kết
+
+Có hai loại liên kết: liên kết trỏ đến một trang web bên ngoài và liên kết trỏ đến các vị trí bên trong chính tài liệu. Cả hai loại đều được calibre hỗ trợ. Ví dụ, đây là một liên kết trỏ đến trang tải xuống calibre. Sau đó, chúng ta có một liên kết trỏ ngược về phần định dạng cấp đoạn văn trong tài liệu này.
+
+Mục lục
+
+calibre có hai cách khi tạo Mục lục. Cách thứ nhất áp dụng khi tài liệu Word đã có Mục lục. Miễn là Mục lục sử dụng siêu liên kết, calibre sẽ tự động dùng mục lục đó. Các cấp của Mục lục được nhận diện dựa trên mức thụt lề bên trái; vì vậy, nếu bạn muốn sách điện tử có Mục lục nhiều cấp, hãy bảo đảm tạo một Mục lục được thụt lề đúng cách trong Word.
+
+Nếu không tìm thấy Mục lục trong tài liệu, thì một mục lục sẽ được tự động tạo từ các tiêu đề trong tài liệu. Một tiêu đề được nhận diện là nội dung có áp dụng kiểu Heading 1, Heading 2, v.v. Các tiêu đề này được chuyển thành Mục lục, trong đó Heading 1 là cấp cao nhất, Heading 2 là cấp thứ hai, và cứ tiếp tục như vậy.
+
+Bạn có thể xem Mục lục do calibre tạo bằng cách nhấp vào nút Mục lục trong trình xem mà bạn dùng để mở sách điện tử đã chuyển đổi.
+
+Minh họa khả năng hỗ trợ DOCX trong calibre	1
+
+Định dạng văn bản	2
+
+Định dạng nội dòng	2
+
+Thử nghiệm với phông chữ	2
+
+Định dạng cấp đoạn văn	2
+
+Bảng	3
+
+Thành phần cấu trúc	5
+
+Chú thích cuối trang & chú thích cuối tài liệu	5
+
+Chữ cái đầu dòng	5
+
+Liên kết	5
+
+Mục lục	5
+
+Hình ảnh	7
+
+Danh sách	8
+
+Danh sách có dấu đầu dòng	8
+
+Danh sách đánh số	8
+
+Danh sách nhiều cấp	8
+
+Danh sách tiếp tục	8
+
+Hình ảnh
+
+Hình ảnh có thể thuộc ba loại chính. Hình ảnh nội dòng là hình ảnh nằm trong dòng chảy văn bản thông thường, như hình chấm xanh này . Hình ảnh nội dòng không làm ngắt văn bản và thường có kích thước nhỏ. Loại hình ảnh tiếp theo là hình ảnh nổi, tức là hình “nổi” trên trang và được văn bản bao quanh. Word hỗ trợ nhiều kiểu hình ảnh nổi hơn so với khả năng của công nghệ sách điện tử hiện nay, nên quá trình chuyển đổi ánh xạ hình ảnh nổi thành dạng nổi đơn giản ở bên trái hoặc bên phải, như bạn có thể thấy qua các hình mũi tên trái và phải ở hai bên đoạn văn này.
+
+Loại hình ảnh cuối cùng là hình ảnh “khối”, tức là hình trở thành một đoạn riêng và không có văn bản ở hai bên. Bên dưới là một chấm xanh được căn giữa.
+
+Các hình ảnh căn giữa như thế này hữu ích cho những hình lớn cần trở thành trọng tâm chú ý.
+
+Nhìn chung, không thể chuyển chính xác vị trí của hình ảnh từ tài liệu Word sang sách điện tử. Lý do là trong Word, vị trí hình ảnh được xác định bằng đơn vị tuyệt đối tính từ ranh giới trang.  Trong sách điện tử không có công nghệ tương đương, nên quá trình chuyển đổi thường sẽ đặt hình ảnh ở vị trí căn giữa hoặc nổi gần điểm trong văn bản nơi hình được chèn, chứ không nhất thiết ở đúng nơi nó xuất hiện trên trang trong Word.
+
+Danh sách
+
+Mọi loại danh sách đều được quá trình chuyển đổi hỗ trợ, ngoại trừ các danh sách dùng dấu đầu dòng cầu kỳ; những dấu này sẽ được chuyển thành dấu đầu dòng thông thường.
+
+Danh sách có dấu đầu dòng
+
+Một
+
+Hai
+
+Danh sách đánh số
+
+Một, với một dòng rất dài để minh họa rằng thụt đầu dòng treo của danh sách đang hoạt động đúng
+
+Hai
+
+Danh sách nhiều cấp
+
+Một
+
+Hai
+
+Ba
+
+Bốn với một dòng rất dài để minh họa rằng thụt đầu dòng treo của danh sách đang hoạt động đúng.
+
+Năm
+
+Sáu
+
+Một danh sách nhiều cấp có dấu đầu dòng:
+
+Một
+
+Hai
+
+Dấu đầu dòng này dùng một hình ảnh làm ký hiệu
+
+Bốn
+
+Năm
+
+Danh sách tiếp tục
+
+Một
+
+Hai
+
+Một đoạn ngắt trong danh sách theo lịch thường lệ, dành cho thông báo dịch vụ công thiết yếu và rất liên quan này.
+
+Bây giờ chúng ta tiếp tục chương trình bình thường
+
+Bốn
+
+MỤC
+
+CẦN
+
+Sách
+
+1
+
+Bút mực
+
+3
+
+Bút chì
+
+2
+
+Bút đánh dấu
+
+2 màu
+
+Kéo
+
+1 chiếc
+
+Thành phố hoặc thị trấn
+
+Điểm A
+
+Điểm B
+
+Điểm C
+
+Điểm D
+
+Điểm E
+
+Điểm A
+
+—
+
+Điểm B
+
+87
+
+—
+
+Điểm C
+
+64
+
+56
+
+—
+
+Điểm D
+
+37
+
+32
+
+91
+
+—
+
+Điểm E
+
+93
+
+35
+
+54
+
+43
+
+—
+
+Trường
+
+Sinh viên mới
+
+Sinh viên tốt nghiệp
+
+Thay đổi
+
+Bậc đại học
+
+Cedar University
+
+110
+
+103
+
++7
+
+Oak Institute
+
+202
+
+210
+
+-8
+
+Bậc sau đại học
+
+Cedar University
+
+24
+
+20
+
++4
+
+Elm College
+
+43
+
+53
+
+-10
+
+Tổng
+
+998
+
+908
+
+90
+
+Bên trái là một bảng nằm bên trong bảng khác, trong đó một số ô đã được gộp.
+
+Tháng 12 năm 2007
+
+Tháng 12 năm 2007
+
+Tháng 12 năm 2007
+
+Tháng 12 năm 2007
+
+Tháng 12 năm 2007
+
+Tháng 12 năm 2007
+
+Tháng 12 năm 2007
+
+Tháng 12 năm 2007
+
+Tháng 12 năm 2007
+
+Tháng 12 năm 2007
+
+Tháng 12 năm 2007
+
+Tháng 12 năm 2007
+
+Tháng 12 năm 2007
+
+CN
+
+T2
+
+T3
+
+T4
+
+T5
+
+T6
+
+T7
+
+T7
+
+1
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+29
+
+30
+
+31

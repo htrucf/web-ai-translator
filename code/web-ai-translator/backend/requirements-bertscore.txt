@@ -1,0 +1,18 @@
+# BERTScore-VI dependencies — PhoBERT-based semantic MT evaluation
+#
+# Usage:
+#   pip install -r requirements-bertscore.txt
+#
+# Notes:
+# - Works on Python 3.12+
+# - First run downloads vinai/phobert-base (~540MB) from HuggingFace
+# - Runs on CPU (slow, ~30s/100 segments) or GPU (fast)
+# - underthesea is optional — Vietnamese word segmentation improves accuracy slightly
+
+# Core
+bert-score>=0.3.13
+transformers>=4.36.0
+torch>=2.0.0        # CPU wheels available, no GPU required
+
+# Optional: Vietnamese word segmentation (improves BERTScore accuracy slightly)
+# underthesea>=6.8.0

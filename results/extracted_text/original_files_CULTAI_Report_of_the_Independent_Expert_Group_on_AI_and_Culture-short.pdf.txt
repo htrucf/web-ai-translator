@@ -1,0 +1,287 @@
+
+
+===== PAGE 1 =====
+Report of the Independent Expert Group on
+2025
+Artificial Intelligence 
+and Culture
+
+
+===== PAGE 2 =====
+CULTAI Independent Expert Group Report
+Graphic design and cover design: Momo Scacchi
+Graphic design for layout: Thaísa Plein
+
+
+===== PAGE 3 =====
+The present report was prepared by an Independent Expert 
+Group convened by UNESCO to gather views and ideas on 
+culture and artificial intelligence. In recognition of the central role 
+of knowledge and ideas in transformation, this initiative reflects 
+UNESCO’s role as a laboratory of ideas. By generating novel 
+insights, the document aims to contribute – among other sources 
+– to the discussions at MONDIACULT 2025. Unless otherwise 
+expressly stated, the findings, interpretations and conclusions 
+contained herein are those of the independent experts who 
+prepared the document and do not necessarily represent the 
+views of UNESCO, its Member States, or any institution, nor do 
+they commit the Organization in any way.
+
+
+===== PAGE 4 =====
+CULTAI Independent Expert Group Report
+4
+ACKNOWLEDGEMENTS
+EXECUTIVE SUMMARY
+I. INTRODUCTION
+II. MAPPING THE ETHICAL LANDSCAPE OF AI IN CULTURE
+A. AI, a Double-edged Tool: Opportunities and Challenges for Culture
+1. Opportunities
+2. Challenges
+B. Overview of key UNESCO and UN initiatives at the intersection of AI 
+and Culture
+C. Other instruments and regulations
+D. Conclusions
+References
+III. CULTURAL RIGHTS IN THE DIGITAL ERA: EQUITY, DIVERSITY AND THE 
+PROTECTION OF CULTURAL COMMONS IN THE AGE OF AI
+A. Reassessing the bond between culture and AI: Recognizing the 
+cognitive value of cultural data
+B. Ensuring equitable access to AI tools in the culture sector
+C. Addressing algorithmic biases and safeguarding cultural diversity in AI 
+systems
+D. Safeguarding Cultural Rights and Redistributing the Value Generated 
+by AI Use of Cultural Data
+E. Conclusions
+References
+IV. THE IMPACT OF AI ON CULTURAL VALUE CHAINS IN THE CREATIVE 
+ECONOMY
+A. Problematization
+B. UNESCO’s pioneering role in promoting equity in the AI-transformed 
+creative economy
+C. AI’s disruptive impact across the creative value chain: opportunities 
+and challenges
+1. The new creative landscape: Three phases of transformation
+2. Economic and social challenges
+D. Alternative economic models: Supporting diversity and independence
+1. Empowering creative communities: Rights, recognition and 
+agency
+2. Strengthening local creative industries
+3. Democratizing access: Algorithmic pluralism and literacy
+4. International Cooperation
+E. Conclusions
+References
+V. CULTURAL EDUCATION IN THE AI ERA: TRAINING THE TALENTS OF 
+TOMORROW
+A. Integrating AI competence into artistic curricula
+B. Developing hybrid skills and transdisciplinary fluencies for cultural 
+professions
+C. Museums & Cultural Institutions: Sowing the seeds of AI 41
+D. Conclusions
+References
+TABLE OF CONTENTS
+7
+9
+11
+13
+13
+13
+14
+14
+16
+18
+19
+21
+21
+23
+24
+25
+27
+29
+31
+31
+32
+33
+33
+35
+35
+36
+36
+36
+37
+38
+39
+40
+40
+43
+44
+45
+47
+
+
+===== PAGE 5 =====
+5
+VI. CLIMATE, CULTURE AND AI FOR AN ENVIRONMENTAL SUSTAINABILITY
+A. The environmental impact of digitalization: Towards eco-responsible 
+practices
+1. Low-carbon AI practices in cultural production
+2. Interdisciplinary research framework for cultural sustainability
+B. Artistic creation and sustainability: AI as a tool for environmental 
+awareness
+1. AI-powered artistic projects raising climate awareness
+2. Optimizing energy management in cultural institutions
+C. Conclusions
+References
+VII. ENDANGERED HERITAGE AND AI: TOOLS FOR SAFEGUARDING AND 
+RESILIENCE
+A. Digital Heritage: AI for the Protection and Conservation of Cultural 
+Heritage
+1. Restoration and Digital Reconstruction: Reviving Cultural Objects 
+with AI
+B. Combating Illicit Trafficking of Cultural Property
+1. Blockchain and Cultural Authenticity: Complementary Roles of AI
+C. Digitization and Safeguarding: Protecting Cultural Heritage at Risk
+1. International Protocols for Digitization in Crisis Situations
+2. 3D Documentation and Damage Assessment: AI for Emergency 
+Conservation Planning
+3. Possible Risks of AI Misuse in Cultural Heritage Contexts
+4. AI for a Faster Post-Disaster Response: Prioritizing, Acting, 
+Planning
+D. Preserving Languages and Ancestral Knowledge: AI and Oral Traditions
+1. AI Linguistic Models for Endangered Languages
+2. Supporting Local Communities with AI
+3. Immersive Storytelling and Community Narratives
+E. Conclusions
+References
+VIII. AI, FREEDOM AND CULTURAL SOVEREIGNTY
+A. Empowerment vs Control
+B. Algorithmic Power and Sovereignty
+C. AI Monopolies and the Crisis of Cultural Infrastructure
+D. Conclusions
+References
+CONCLUSIONS
+BIOS OF EXPERT GROUP MEMBERS
+FIGURES
+Figure 1. The cultural value chain in the digital environment: from a ‘pipeline’ 
+configuration to a network model
+48
+49
+50
+50
+51
+51
+52
+53
+54
+56
+56
+56
+57
+58
+58
+58
+59
+59
+60
+61
+61
+61
+62
+62
+63
+65
+66
+67
+68
+69
+70
+71
+73
+32
+
+
+===== PAGE 6 =====
+CULTAI Independent Expert Group Report
+6
+
+
+===== PAGE 7 =====
+7
+The Independent Expert Group on Artificial Intelligence and Culture (CULTAI), 
+convened by UNESCO, wishes to express its gratitude for the opportunity to 
+work together in preparing this report. The process was a collective endeavour, 
+shaped by the diverse experiences, perspectives and disciplinary approaches of 
+the members.
+Participating in their personal capacity, each of the ten experts and two youth 
+representatives brought unique insights, and it was through dialogue, exchange 
+and collaboration that this document came to fruition.
+The members of the Group were:
+ACKNOWLEDGEMENTS
+•	Mercedez Bunz
+•	Brendan Ciecko
+•	Salim Dada
+•	Kim Jeong Han
+•	Lethabo Huma
+•	Joe Kallas
+The Group extends its special appreciation to its Chair, Salim Dada, whose thoughtful 
+guidance and dedication anchored the work throughout the process. On behalf of 
+UNESCO, the work was coordinated by Andrea Detmer Latorre.
+Above all, the Group hopes that the reflections presented here will contribute to 
+advancing cultural rights, diversity and sustainability in the age of artificial intelligence.
+•	Octavio Kulesz
+•	Roman Lipski
+•	Ramon López de Mantaras
+•	Alejandra López Gabrielidis
+•	Ojoma Ochai
+•	Shrey Maurya
+
+
+===== PAGE 8 =====
+CULTAI Independent Expert Group Report
+8
+
+
+===== PAGE 9 =====
+9
+The Independent Expert Group on Artificial Intelligence and Culture (CULTAI), 
+convened by UNESCO, examined how AI is reshaping creativity, heritage and 
+cultural ecosystems worldwide. The Group’s analysis highlights an urgent reality: 
+artificial intelligence is advancing faster than cultural governance, widening divides 
+and raising new risks, while also offering powerful opportunities to reinforce cultural 
+innovation and resilience.
+AI is already transforming how culture is created, shared and preserved. It can 
+expand access, safeguard heritage, amplify diverse voices and open new creative 
+possibilities. At the same time, it can deepen inequalities, intensify biases, accelerate 
+cultural homogenization and increase environmental costs.
+The report identifies core challenges:
+•	Outpacing of governance, as the acceleration of AI exceeds the capacity 
+of cultural ecosystems to adapt, threatening sovereignty, pluralism and 
+democratic oversight;
+•	Reinforcement of bias and homogenization, as unbalanced training data and 
+algorithmic personalization reproduce stereotypes and foster monocultures;
+•	Undermining of cultural rights, through the exploitation of unprotected cultural 
+data without consent, attribution, or compensation and the marginalization of 
+minority cultures; and
+•	Erosion of creativity and skills, as overreliance on AI weakens human creativity 
+and cognitive capacities.
+It also highlights opportunities, notably:
+•	Expansion of creativity and access, by lowering entry barriers and enabling 
+new creative forms;
+•	Protection of cultural heritage, through restoration, conservation, post-
+disaster response and the preservation of endangered languages;
+•	Strengthening of cultural and creative industries, as automation of routine 
+tasks reduces costs and enhances the competitiveness of small enterprises; 
+and
+•	Advancement of equitable learning opportunities, with museums and cultural 
+institutions cultivating AI literacy, creativity and critical reflection.
+The Independent Expert Group calls for global cooperation and inclusive governance 
+to ensure that AI strengthens cultural diversity, equity and sustainability. Rights-
+based approaches to AI, green practices, fair creative economies and sustainable 
+cultural futures must place human creativity and cultural rights at the centre of 
+technological development.
+EXECUTIVE SUMMARY
+
+
+===== PAGE 10 =====
+CULTAI Independent Expert Group Report
+10

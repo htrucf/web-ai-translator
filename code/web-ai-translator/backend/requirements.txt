@@ -1,0 +1,42 @@
+# ── Core API ────────────────────────────────────────────────────────────────
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+gunicorn==23.0.0                # production WSGI/ASGI runner (uses UvicornWorker)
+python-dotenv==1.0.1
+pydantic==2.10.4
+python-multipart>=0.0.6
+httpx==0.28.1
+websockets>=13.0                # FastAPI WebSocket transport
+
+# ── Browser automation (translation core) ──────────────────────────────────
+playwright==1.49.1
+beautifulsoup4>=4.12.0
+
+# ── PDF pipeline ───────────────────────────────────────────────────────────
+PyMuPDF>=1.24.0
+
+# ── Office pipeline (.docx in-place translation) ───────────────────────────
+# Output .docx is rebuilt from the original ZIP with lxml (only <w:t> text
+# nodes are edited). Preview rendering is delegated to LibreOffice headless
+# (not pip-installable — detected on PATH via app/office/preview.py).
+lxml>=5.0.0
+
+# ── Persistence (Postgres in prod, SQLite fallback in dev) ─────────────────
+SQLAlchemy>=2.0.30
+alembic>=1.13.0
+psycopg[binary]>=3.2.0          # Postgres driver (binary wheel ships its own libpq)
+
+# ── Task queue + cache ─────────────────────────────────────────────────────
+celery[redis]>=5.4.0            # broker + result backend = Redis
+redis>=5.0.0                    # also used directly for cache + pub/sub + pools
+flower>=2.0.0                   # Celery monitoring UI
+
+# ── Cross-cutting concerns ─────────────────────────────────────────────────
+structlog>=24.4.0               # structured (JSON) logging
+slowapi>=0.1.9                  # per-user / per-IP rate limiting
+prometheus-client>=0.20.0       # /metrics endpoint
+tenacity>=8.3.0                 # retry helper used by Celery tasks + scrapers
+psutil>=5.9.0                   # cross-platform process cleanup (replaces PowerShell on Linux)
+
+# ── MT evaluation metrics ──────────────────────────────────────────────────
+sacrebleu>=2.3.1                # ChrF++ standard backend — lightweight, pure Python

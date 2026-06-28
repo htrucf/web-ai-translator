@@ -1,0 +1,32 @@
+
+
+===== PAGE 1 =====
+QUÁN TÍNH CỦA MỘT VẬT CÓ PHỤ THUỘC
+VÀO NỘI DUNG NĂNG LƯỢNG CỦA NÓ
+KHÔNG?
+Tác giả: A. Einstein (27/09/1905)
+Tóm tắt:
+Bài báo ngắn này suy ra hệ quả nổi tiếng của thuyết tương đối: nếu một vật phát ra
+năng lượng L dưới dạng bức xạ thì khối lượng của nó giảm một lượng L/c².
+Bản dịch tóm lược đầy đủ nội dung:
+Các kết quả của nghiên cứu trước dẫn đến một kết luận rất thú vị. Dựa trên các
+phương trình Maxwell–Hertz cho không gian trống, biểu thức Maxwell về năng lượng
+điện từ và nguyên lý tương đối, Einstein xét một hệ sóng ánh sáng phẳng có năng
+lượng l.
+Khi chuyển sang một hệ tọa độ chuyển động đều với vận tốc v, năng lượng ánh sáng
+được biến đổi theo:
+l* = l (1 − (v/c)cosφ)/sqrt(1−v²/c²)
+Xét một vật đứng yên có năng lượng E0. Vật phát đồng thời hai chùm ánh sáng ngược
+chiều nhau, mỗi chùm mang năng lượng L/2. Từ định luật bảo toàn năng lượng trong
+hai hệ quy chiếu, Einstein thu được:
+K0 − K1 = L(1/sqrt(1−v²/c²) − 1)
+Với vận tốc nhỏ, khai triển gần đúng cho:
+K0 − K1 = (1/2)(L/c²)v²
+Từ đó suy ra rằng khi vật phát ra năng lượng L dưới dạng bức xạ thì khối lượng của nó
+giảm đi một lượng L/c².
+Kết luận:
+Khối lượng của một vật là thước đo nội dung năng lượng của nó. Nếu năng lượng thay
+đổi một lượng L thì khối lượng cũng thay đổi cùng chiều với lượng L/c². Đây chính là cơ
+sở của hệ thức nổi tiếng E = mc².
+Tài liệu tham khảo:
+Einstein, A. (1905). Does the Inertia of a Body Depend Upon Its Energy-Content?

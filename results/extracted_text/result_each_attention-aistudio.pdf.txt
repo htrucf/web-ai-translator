@@ -1,0 +1,289 @@
+
+
+===== PAGE 1 =====
+Attention Is All You Need
+Ashish Vaswani∗
+Google Brain
+avaswani@google.com
+Noam Shazeer∗
+Google Brain
+noam@google.com
+Niki Parmar∗
+Google Research
+nikip@google.com
+Jakob Uszkoreit∗
+Google Research
+usz@google.com
+Llion Jones∗
+Google Research
+llion@google.com
+Aidan N. Gomez∗†
+University of Toronto
+aidan@cs.toronto.edu
+ Lukasz Kaiser∗
+Google Brain
+lukaszkaiser@google.com
+Illia Polosukhin∗‡
+illia.polosukhin@gmail.com
+Tóm tắt nội dung
+Các mô hình chuyển đổi chuỗi (sequence transduction) chủđạo hiện nay đều dựa trên các mạng nơ-ron hồi quy
+(recurrent neural networks) hoặc tích chập (convolutional) phức tạp bao gồm một bộmã hóa (encoder) và một bộ
+giải mã (decoder). Các mô hình có hiệu suất tốt nhất cũng kết nối bộmã hóa và bộgiải mã thông qua một cơ chế
+chú ý (attention mechanism). Chúng tôi đềxuất một kiến trúc mạng đơn giản và mới mẻ, Transformer, hoàn toàn
+chỉdựa trên các cơ chếchú ý, loại bỏhoàn toàn sựhồi quy và tích chập. Các thửnghiệm trên hai tác vụdịch máy
+(machine translation) cho thấy các mô hình này vượt trội vềchất lượng, đồng thời có khảnăng tính toán song song
+cao hơn và yêu cầu thời gian huấn luyện ít hơn đáng kể. Mô hình của chúng tôi đạt 28.4 BLEU trên tác vụdịch tiếng
+Anh sang tiếng Đức WMT 2014, cải thiện hơn 2 BLEU so với các kết quảtốt nhất hiện có, bao gồm cảcác mô hình
+tổhợp (ensembles). Trên tác vụdịch tiếng Anh sang tiếng Pháp WMT 2014, mô hình của chúng tôi thiết lập một
+điểm sốBLEU tốt nhất (state-of-the-art) mới cho mô hình đơn là 41.8 sau khi huấn luyện trong 3.5 ngày trên tám
+GPU, chỉbằng một phần nhỏchi phí huấn luyện của các mô hình tốt nhất trong y văn. Chúng tôi chứng minh rằng
+Transformer có khảnăng khái quát hóa tốt (generalizes well) sang các tác vụkhác bằng cách áp dụng nó thành công
+vào tác vụphân tích cú pháp thành phần tiếng Anh (English constituency parsing) với cảdữliệu huấn luyện lớn và
+hạn chế.
+1
+Giới thiệu (Introduction)
+Các mạng nơ-ron hồi quy, đặc biệt là long short-term
+memory [13] và gated recurrent [7], đã được khẳng định
+vững chắc là các phương pháp tiên tiến nhất (state of
+the art) trong các bài toán lập mô hình chuỗi (sequence
+modeling) và chuyển đổi chuỗi như lập mô hình ngôn ngữ
+và dịch máy [35, 2, 5]. Nhiều nỗlực kểtừđó đã tiếp tục
+đẩy lùi các giới hạn của mô hình ngôn ngữhồi quy và kiến
+trúc encoder-decoder [38, 24, 15].
+Các mô hình hồi quy thường tính toán phân tích theo
+các vịtrí ký hiệu (symbol positions) của chuỗi đầu vào và
+đầu ra. Bằng cách căn chỉnh các vịtrí với các bước trong
+thời gian tính toán, chúng tạo ra một chuỗi các trạng thái
+ẩn (hidden states) ht, như một hàm của trạng thái ẩn
+trước đó ht−1 và đầu vào tại vịtrí t. Bản chất tuần tự
+(sequential) vốn có này ngăn cản khảnăng song song hóa
+(parallelization) trong các mẫu huấn luyện, điều này trở
+nên nghiêm trọng ởcác độdài chuỗi dài hơn, do giới hạn
+∗Đóng góp ngang nhau. Thứtựliệt kê là ngẫu nhiên... [CHI
+TIẾT FOOTNOTE TÁC GIẢBẢO TOÀN TỪBẢN GỐC].
+†Công việc được thực hiện khi ởGoogle Brain. ‡Công việc được
+thực hiện khi ởGoogle Research.
+Hội nghịlần thứ31 vềHệthống Xửlý Thông tin Nơ-ron (NIPS
+2017), Long Beach, CA, USA.
+bộnhớhạn chếviệc phân lô (batching) qua các mẫu. Công
+trình gần đây đã đạt được những cải tiến đáng kểvềhiệu
+quảtính toán thông qua các kỹthuật phân tích nhân tử
+(factorization tricks) [21] và tính toán có điều kiện [32].
+Tuy nhiên, hạn chếcơ bản của tính toán tuần tựvẫn còn
+đó.
+Các cơ chếchú ý (attention mechanisms) đã trởthành
+một phần không thểthiếu trong các mô hình lập mô hình
+chuỗi và chuyển đổi hấp dẫn trong nhiều tác vụkhác nhau,
+cho phép lập mô hình các phụthuộc (dependencies) bất
+kểkhoảng cách của chúng trong chuỗi đầu vào hay đầu ra
+[2, 19]. Tuy nhiên, trong hầu hết các trường hợp [27], các
+cơ chếchú ý như vậy được sửdụng kết hợp với một mạng
+hồi quy.
+Trong công trình này, chúng tôi đềxuất Transformer,
+một kiến trúc mô hình tránh xa sựhồi quy và thay vào
+đó hoàn toàn dựa vào cơ chếchú ý đểvẽra các phụthuộc
+toàn cục (global dependencies) giữa đầu vào và đầu ra.
+Transformer cho phép song song hóa nhiều hơn đáng kể
+và có thểđạt được kết quảstate-of-the-art mới vềchất
+lượng dịch thuật chỉsau mười hai giờhuấn luyện trên tám
+GPU P100.
+1
+
+
+===== PAGE 2 =====
+2
+Kiến
+thức
+nền
+tảng
+(Background)
+Mục tiêu giảm thiểu tính toán tuần tựcũng hình thành
+nền tảng của Extended Neural GPU [16], ByteNet [18] và
+ConvS2S [9], tất cảđều sửdụng mạng nơ-ron tích chập
+(convolutional neural networks) làm khối xây dựng cơ bản,
+tính toán các biểu diễn ẩn song song cho tất cảcác vịtrí
+đầu vào và đầu ra. Trong các mô hình này, sốlượng thao
+tác cần thiết đểliên kết các tín hiệu từhai vịtrí đầu vào
+hoặc đầu ra bất kỳtăng theo khoảng cách giữa các vịtrí,
+tuyến tính cho ConvS2S và logarit cho ByteNet. Điều này
+làm cho việc học các phụthuộc giữa các vịtrí xa nhau
+trởnên khó khăn hơn [12]. Trong Transformer, điều này
+được giảm xuống một sốlượng thao tác không đổi, mặc
+dù phải trảgiá bằng độphân giải hiệu quảbịgiảm do
+việc lấy trung bình các vịtrí được đánh trọng sốchú ý,
+một hiệu ứng mà chúng tôi khắc phục bằng Chú ý đa đầu
+(Multi-Head Attention) như được mô tảtrong phần 3.2.
+Tựchú ý (Self-attention), đôi khi được gọi là chú ý nội
+bộ(intra-attention), là một cơ chếchú ý liên kết các vịtrí
+khác nhau của một chuỗi duy nhất đểtính toán một biểu
+diễn của chuỗi đó. Tựchú ý đã được sửdụng thành công
+trong nhiều tác vụ... [4, 27, 28, 22].
+Hình 1: Hình 1: Kiến trúc mô hình Transformer.
+3
+Kiến
+trúc
+mô
+hình
+(Model
+Architecture)
+Hầu hết các mô hình chuyển đổi chuỗi nơ-ron cạnh tranh
+đều có cấu trúc encoder-decoder [5, 2, 35]. Ởđây, bộmã
+hóa ánh xạmột chuỗi đầu vào gồm các biểu diễn ký hiệu
+(x1, ..., xn) thành một chuỗi các biểu diễn liên tục z =
+(z1, ..., zn). Với z, bộgiải mã sau đó tạo ra một chuỗi đầu
+ra (y1, ..., ym) gồm các ký hiệu tại từng phần tửmột.
+3.1
+Các ngăn xếp Mã hóa và Giải mã
+(Encoder and Decoder Stacks)
+Bộmã hóa (Encoder): Bộmã hóa bao gồm một ngăn
+xếp gồm N = 6 lớp giống hệt nhau. Mỗi lớp có hai lớp
+con (sub-layers). Lớp thứnhất là cơ chếtựchú ý đa đầu
+(multi-head self-attention mechanism), và lớp thứhai là
+một mạng feed-forward kết nối đầy đủtheo vịtrí (position-
+wise fully connected feed-forward network). Chúng tôi sử
+dụng một kết nối thặng dư (residual connection) [11] xung
+quanh mỗi lớp trong hai lớp con, tiếp theo là chuẩn hóa
+lớp (layer normalization) [1]. Đó là, đầu ra của mỗi lớp con
+là LayerNorm(x+Sublayer(x)). Đểtạo điều kiện thuận lợi
+cho các kết nối thặng dư này, tất cảcác lớp con trong mô
+hình tạo ra đầu ra có chiều dmodel = 512.
+Bộgiải mã (Decoder): Bộgiải mã cũng bao gồm một
+ngăn xếp gồm N = 6 lớp giống hệt nhau. Ngoài hai lớp
+con trong mỗi lớp của bộmã hóa, bộgiải mã chèn một
+lớp con thứba, thực hiện chú ý đa đầu trên đầu ra của
+ngăn xếp mã hóa.
+3.2
+Chú ý (Attention)
+3.2.1
+Chú ý tích vô hướng theo tỷlệ(Scaled Dot-
+Product Attention)
+Đầu vào bao gồm các truy vấn (queries) và khóa (keys)
+có chiều dk, và các giá trị(values) có chiều dv. Chúng tôi
+tính toán tích vô hướng (dot products) của truy vấn với
+tất cảcác khóa, chia mỗi kết quảcho √dk, và áp dụng
+hàm softmax đểthu được trọng sốtrên các giá trị.
+Attention(Q, K, V ) = softmax
+QKT
+√dk
+
+V
+(1)
+3.2.2
+Chú ý đa đầu (Multi-Head Attention)
+MultiHead(Q, K, V ) = Concat(head1, ..., headh)W O
+where headi = Attention(QW Q
+i , KW K
+i , V W V
+i )
+Trong đó các ma trận tham sốW Q
+i
+∈Rdmodel×dk, W K
+i
+∈
+Rdmodel×dk, W V
+i
+∈Rdmodel×dv và W O ∈Rhdv×dmodel.
+Trong công trình này chúng tôi sửdụng h = 8 đầu. Chúng
+tôi sửdụng dk = dv = dmodel/h = 64.
+3.3
+Mạng
+Feed-Forward
+theo
+vị
+trí
+(Position-wise
+Feed-Forward
+Networks)
+FFN(x) = max(0, xW1 + b1)W2 + b2
+(2)
+3.4
+Mã hóa vịtrí (Positional Encoding)
+Vì mô hình của chúng tôi không chứa hồi quy và tích chập,
+đểmô hình sửdụng được thứtựcủa chuỗi, chúng tôi tiêm
+(inject) thông tin vềvịtrí:
+PE(pos,2i) = sin(pos/100002i/dmodel)
+PE(pos,2i+1) = cos(pos/100002i/dmodel)
+4
+Tại sao chọn Tựchú ý (Why
+Self-Attention)
+[Phân tích so sánh Độphức tạp, Bảng 1...]
+2
+
+
+===== PAGE 3 =====
+Bảng 1: Độdài đường dẫn tối đa, độphức tạp mỗi lớp và
+sốthao tác tuần tựtối thiểu cho các loại lớp khác nhau.
+Loại lớp
+Độphức tạp
+Thao tác tuần tự
+Đường dẫn tối đa
+Self-Attention
+O(n2 · d)
+O(1)
+O(1)
+Recurrent
+O(n · d2)
+O(n)
+O(n)
+Convolutional
+O(k · n · d2)
+O(1)
+O(logk(n))
+Self-Attention (restricted)
+O(r · n · d)
+O(1)
+O(n/r)
+5
+Huấn luyện (Training)
+5.1
+Lịch trình phần cứng (Hardware and
+Schedule)
+Chúng tôi đã huấn luyện các mô hình trên một máy có 8
+GPU NVIDIA P100...
+5.2
+Bộtối ưu hóa (Optimizer)
+Chúng tôi đã sửdụng bộtối ưu hóa Adam [20] với β1 =
+0.9, β2 = 0.98 và ϵ = 10−9. Chúng tôi thay đổi tốc độhọc
+(learning rate) theo công thức:
+lrate = d−0.5
+model·min(step_num−0.5, step_num·warmup_steps−1.5)
+(3)
+6
+Kết quả(Results)
+Mô hình Transformer (big) vượt trội hơn các mô hình tốt
+nhất trước đây... (Bảng 2).
+Bảng 2: Transformer đạt điểm BLEU tốt hơn so với các
+mô hình state-of-the-art trước đó.
+Mô hình (Model)
+BLEU
+EN-DE
+EN-FR
+ByteNet [18]
+23.75
+ConvS2S [9]
+25.16
+40.46
+Transformer (base model)
+27.3
+38.1
+Transformer (big)
+28.4
+41.8
+7
+Kết luận (Conclusion)
+Trong công trình này, chúng tôi đã trình bày Transformer,
+mô hình chuyển đổi chuỗi đầu tiên hoàn toàn dựa trên sự
+chú ý... Code của chúng tôi hiện có tại https://github.
+com/tensorflow/tensor2tensor.
+Tài liệu tham khảo (References)
+[1] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey
+E
+Hinton.
+Layer
+normalization.
+arXiv
+preprint
+arXiv:1607.06450, 2016.
+[Bảo toàn bộnguyên văn danh sách 40 References bằng
+tiếng Anh theo chuẩn mực học thuật quốc tế]
+3

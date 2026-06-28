@@ -1,0 +1,300 @@
+version: "3.9"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Full production-like stack for web-ai-translator.
+#
+# Services:
+#   postgres    — persistent storage (jobs, chunks, users, sessions, glossary)
+#   redis       — Celery broker + cache + pub/sub for WebSocket fan-out
+#   backend     — FastAPI app (multiple replicas behind Nginx)
+#   worker      — Celery workers (1 Playwright Chrome per worker)
+#   frontend    — React SPA served by Nginx
+#   nginx       — reverse proxy + load balancer + static cache
+#   prometheus  — metrics scraper
+#   grafana     — metrics dashboard
+#
+# Usage:
+#   docker compose up -d            # start the whole stack
+#   docker compose logs -f backend  # tail backend logs
+#   docker compose exec backend alembic upgrade head   # run migrations
+#   docker compose down -v          # nuke everything including volumes
+# ─────────────────────────────────────────────────────────────────────────────
+
+x-backend-env: &backend-env
+  # ── Database ──
+  DATABASE_URL: postgresql+psycopg://wat_user:wat_pass@postgres:5432/wat_db
+  ALEMBIC_DATABASE_URL: postgresql+psycopg://wat_user:wat_pass@postgres:5432/wat_db
+  # ── Redis (broker + cache + pubsub) ──
+  REDIS_URL: redis://redis:6379/0
+  CELERY_BROKER_URL: redis://redis:6379/1
+  CELERY_RESULT_BACKEND: redis://redis:6379/2
+  CACHE_REDIS_URL: redis://redis:6379/3
+  PUBSUB_REDIS_URL: redis://redis:6379/4
+  # ── App ──
+  WORKSPACE_DIR: /data/workspace
+  BROWSER_DATA_DIR: /data/browser_data  # Persistent Gemini login (mount qua volume)
+  CORS_ORIGINS: "http://localhost,http://localhost:80,http://localhost:8080"
+  AI_BACKEND: gemini
+  TRANSLATOR_MODE: new_browser
+  PYTHONUNBUFFERED: "1"
+  LOG_LEVEL: INFO
+  # ── Playwright (container-specific) ──
+  PLAYWRIGHT_NO_SANDBOX: "1"   # Chrome chay as root trong container -> can flag nay
+  DISPLAY: ":99"               # Xvfb display do entrypoint khoi tao
+  # ── Ollama (optional — chi co khi bat profile 'ollama') ──
+  # Host: 'ollama' la service name trong compose; neu chay Ollama tren host
+  # (Windows/macOS), override = 'http://host.docker.internal:11434'.
+  OLLAMA_URL: "${OLLAMA_URL:-http://ollama:11434}"
+  # ── Observability ──
+  PROMETHEUS_MULTIPROC_DIR: /tmp/prom_multiproc
+  # ── Pools ──
+  # These paths are populated by the `secrets:` block at the bottom of this file.
+  # If the host files are missing, Compose v2 falls back to an empty mount and
+  # the pool loaders silently return empty — the translator still works, just
+  # without rotation. To wire real accounts/proxies in, create:
+  #   ./secrets/gemini_accounts.json   (JSON list of {email, profile_dir, ...})
+  #   ./secrets/proxies.txt            (one URL per line)
+  GEMINI_ACCOUNTS_FILE: /run/secrets/gemini_accounts
+  PROXY_LIST_FILE: /run/secrets/proxies
+
+services:
+  # ────────────────────────────────────────────────────────────────────────
+  # Postgres — primary persistent store
+  # ────────────────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: wat_postgres
+    environment:
+      POSTGRES_USER: wat_user
+      POSTGRES_PASSWORD: wat_pass
+      POSTGRES_DB: wat_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wat_user -d wat_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks: [wat_net]
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Redis — broker, cache, pub/sub
+  # ────────────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: wat_redis
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks: [wat_net]
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Backend API (FastAPI). Two replicas behind Nginx for horizontal scale.
+  # ────────────────────────────────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      <<: *backend-env
+      ROLE: api
+    volumes:
+      - workspace_data:/data/workspace
+      - browser_data:/data/browser_data        # Trong truong hop API fallback dispatch subprocess
+      - ./backend/app:/app/app:ro     # bind for hot-reload-able dev iterations
+    secrets:
+      - gemini_accounts
+      - proxies
+    expose:
+      - "8000"
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis:    { condition: service_healthy }
+    deploy:
+      replicas: 2
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks: [wat_net]
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Celery worker pool. Each worker has its own Playwright Chrome instance
+  # and (ideally) its own Gemini account from the pool.
+  # ────────────────────────────────────────────────────────────────────────
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      <<: *backend-env
+      ROLE: worker
+      # One Playwright Chrome per worker process. Concurrency higher than this
+      # would just thrash Chrome and burn RAM.
+      CELERY_CONCURRENCY: "1"
+    # IMPORTANT: phai dung entrypoint (de start Xvfb) — KHONG override command,
+    # entrypoint se nhan ROLE=worker va exec celery sau khi khoi tao Xvfb.
+    volumes:
+      - workspace_data:/data/workspace
+      - browser_data:/data/browser_data     # Persistent Gemini login (shared giua replicas)
+    secrets:
+      - gemini_accounts
+      - proxies
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis:    { condition: service_healthy }
+    deploy:
+      replicas: 3     # 3 concurrent translation jobs out of the box
+    networks: [wat_net]
+    # Chrome needs more shared memory than the default 64MB
+    shm_size: "2gb"
+
+  # Celery beat — fires periodic jobs (session purge, cache cleanup, etc.)
+  beat:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      <<: *backend-env
+      ROLE: beat
+    command: ["celery", "-A", "app.celery_app:celery_app", "beat", "--loglevel=info"]
+    depends_on:
+      redis: { condition: service_healthy }
+    networks: [wat_net]
+
+  # Flower — Celery monitoring UI (handy for DATN demo)
+  flower:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      <<: *backend-env
+    command: ["celery", "-A", "app.celery_app:celery_app", "flower", "--port=5555"]
+    ports:
+      - "5555:5555"
+    depends_on:
+      redis: { condition: service_healthy }
+    networks: [wat_net]
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Frontend (built static assets served via Nginx in the same image)
+  # ────────────────────────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    expose:
+      - "80"
+    networks: [wat_net]
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Nginx — reverse proxy, LB across backend replicas, WebSocket upgrade,
+  #         static cache, gzip.
+  # ────────────────────────────────────────────────────────────────────────
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: wat_nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+      - frontend
+    networks: [wat_net]
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Prometheus — scrapes /metrics from backend + worker
+  # ────────────────────────────────────────────────────────────────────────
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    container_name: wat_prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.retention.time=30d"
+    ports:
+      - "9090:9090"
+    networks: [wat_net]
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Ollama — local LLM/VLM server (optional, opt-in via compose profile)
+  # Khoi dong:    docker compose --profile ollama up -d
+  # Pull models:  docker compose exec ollama ollama pull qwen2.5:7b
+  #               docker compose exec ollama ollama pull llava:7b
+  # GPU:          dung overlay docker-compose.gpu.yml (NVIDIA Container Toolkit)
+  # ────────────────────────────────────────────────────────────────────────
+  ollama:
+    image: ollama/ollama:0.4.7
+    container_name: wat_ollama
+    profiles: [ollama]              # KHONG khoi dong mac dinh
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"               # Expose ra host de debug; trong network dung "ollama:11434"
+    networks: [wat_net]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Grafana — dashboards, pre-provisioned datasource + dashboard
+  # ────────────────────────────────────────────────────────────────────────
+  grafana:
+    image: grafana/grafana:11.3.0
+    container_name: wat_grafana
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks: [wat_net]
+
+volumes:
+  postgres_data:
+  redis_data:
+  workspace_data:
+  browser_data:        # Persistent Gemini login profile (do not delete!)
+  prometheus_data:
+  grafana_data:
+  ollama_data:         # Cache cac model Ollama da pull (LLaVA / qwen2.5)
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Optional secrets — bind-mount from ./secrets/.  Compose v2 errors on a
+# missing file, so create empty placeholders if you don't have real pools yet:
+#   mkdir -p secrets && touch secrets/gemini_accounts.json secrets/proxies.txt
+# Then set them to your real account list / proxy list before going live.
+# ──────────────────────────────────────────────────────────────────────────────
+secrets:
+  gemini_accounts:
+    file: ./secrets/gemini_accounts.json
+  proxies:
+    file: ./secrets/proxies.txt
+
+networks:
+  wat_net:
+    driver: bridge

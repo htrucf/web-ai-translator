@@ -1,0 +1,33 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# GPU overlay — cap quyen NVIDIA cho Ollama de chay LLM/VLM tren GPU.
+#
+# Yeu cau:
+#   1. Driver NVIDIA tren host (Linux/WSL2)
+#   2. NVIDIA Container Toolkit:
+#        https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+#   3. Test: docker run --rm --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi
+#
+# Cach dung (chay cung voi profile ollama):
+#   docker compose -f docker-compose.yml -f docker-compose.gpu.yml \
+#       --profile ollama up -d
+#
+# Verify Ollama da nhin thay GPU:
+#   docker compose exec ollama nvidia-smi
+# ─────────────────────────────────────────────────────────────────────────────
+version: "3.9"
+
+services:
+  ollama:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all          # Cap tat ca GPU; doi sang so cu the neu can: count: 1
+              capabilities: [gpu]
+    environment:
+      # OLLAMA_GPU_LAYERS=-1: tu dong dat toi da layer len GPU (full offload).
+      # Doi sang so cu the (vd 35) neu VRAM nho — Ollama se split GPU+CPU.
+      OLLAMA_NUM_GPU: "-1"
+      # Bat keep_alive lau hon de tranh reload model giua cac request.
+      OLLAMA_KEEP_ALIVE: "30m"

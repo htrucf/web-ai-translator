@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.env
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+workspace/
+node_modules/
+*.pdf
+*.tar.gz
+*.aux
+*.log
+*.out
+*.toc

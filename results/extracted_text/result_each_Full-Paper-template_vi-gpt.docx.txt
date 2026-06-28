@@ -1,0 +1,187 @@
+Tóm tắt - Phần Tóm tắt và Từ khóa chỉ mục cần dùng Times New Roman cỡ 10, đậm nghiêng, căn đều hai lề và mỗi phần nằm trong một đoạn riêng. Bắt đầu phần Tóm tắt bằng từ “Tóm tắt.” Không thụt đầu dòng. Dùng dấu gạch nối sau từ “Tóm tắt,” không dùng gạch ngang dài. Phần Tóm tắt nên dài khoảng 150 - 200 từ. Tránh dùng chữ viết tắt. Không trích dẫn tài liệu trong Tóm tắt. Chừa một dòng trống giữa Tóm tắt và Từ khóa chỉ mục.
+
+Từ khóa chỉ mục - Khoảng bốn từ khóa hoặc cụm từ khóa, sắp xếp theo thứ tự chữ cái, phân tách bằng dấu phẩy, chỉ viết hoa thuật ngữ đầu tiên. Các thuật ngữ sau thuật ngữ đầu tiên nên viết thường, trừ khi là danh từ riêng thì viết hoa chữ cái đầu.
+
+Giới thiệu
+
+Các hướng dẫn này đóng vai trò là mẫu cho Microsoft Word và cung cấp những chỉ dẫn cơ bản để chuẩn bị bài báo cho ProComm 2024, ngày 14 - 17 tháng 7.
+
+Vui lòng bật “Hiển thị bình luận” và làm theo cẩn thận các hướng dẫn này để bảo đảm tài liệu dễ đọc và thống nhất.
+
+Bố cục trang
+
+Khi mở các hướng dẫn này, hãy chọn "Bố trí in" trong menu "Xem" (Xem > Bố trí in) để nhìn thấy định dạng hai cột. Sau đó, bạn có thể nhập đè lên các phần bằng lệnh sao chép và dán trong menu Chỉnh sửa (Chỉnh sửa > Dán) vào tài liệu này và/hoặc dùng các style đánh dấu. Chúng tôi gợi ý bạn dùng tài liệu này làm hướng dẫn và chỉ cần sao chép, dán nội dung của mình thay cho phần nội dung mẫu trong tài liệu.
+
+Tất cả nội dung in, gồm văn bản, hình minh họa và biểu đồ, phải nằm trong vùng in rộng 6-7/8 inch (17,5 cm) và cao 8-7/8 inch (22,54 cm). Không viết hoặc in bất kỳ nội dung nào ngoài vùng in. Toàn bộ văn bản phải ở định dạng hai cột. Mỗi cột rộng 3-1/4 inch (8,25 cm), khoảng cách giữa hai cột là 5/16 inch (0,8 cm). Văn bản phải được căn đều hai lề; phần thân bài dùng phông Times New Roman cỡ 10 pt.
+
+Vì Kỷ yếu sẽ được cung cấp ở định dạng số, bài báo có thể sử dụng màu, nhưng nên chọn các màu vẫn có độ tương phản tốt khi in đen trắng.
+
+Không đánh số trang; tất cả bài báo sẽ được ghép lại để tạo Kỷ yếu và số trang sẽ được thêm ở giai đoạn đó.
+
+Hầu hết bài báo toàn văn dài khoảng sáu trang. Độ dài tối đa là tám trang, bao gồm tài liệu tham khảo và toàn bộ hình và/hoặc bảng.
+
+I.  Tiêu đề chính
+
+Tiêu đề chính (ở trang đầu) nên bắt đầu cách mép trên của trang 1 inch (2,54 cm). Tiêu đề cần được căn giữa, dùng Times cỡ 24 pt. Viết hoa chữ cái đầu của danh từ, đại từ, động từ, tính từ và trạng từ; không viết hoa mạo từ, liên từ đẳng lập hoặc giới từ, trừ khi tiêu đề bắt đầu bằng những từ đó.
+
+II.  Tên tác giả và đơn vị công tác
+
+Phần này chỉ nên chứa thông tin nhận dạng khi nộp bản camera-ready cuối cùng.
+
+Tên tác giả và đơn vị công tác cần được căn giữa bên dưới tiêu đề và trình bày bằng Times cỡ 12 pt, không in đậm. Nhiều tác giả có thể được trình bày theo định dạng hai hoặc ba cột, với đơn vị công tác nằm dưới tên tương ứng. Nếu chỉ có một tác giả, căn giữa thông tin; nếu có hai tác giả, dùng ô trái và ô phải; ba tác giả được trình bày như trên; nếu có nhiều hơn ba tác giả, tạo hàng mới và định dạng phù hợp, chừa một dòng trống giữa các hàng tác giả. Đơn vị công tác được căn giữa dưới mỗi tên tác giả, in nghiêng, không in đậm. Bao gồm địa chỉ email.
+
+III.  Trang thứ hai và các trang tiếp theo
+
+Trang thứ hai và các trang tiếp theo nên bắt đầu cách mép trên 1,0 inch (2,54 cm). Trên mọi trang, lề dưới nên cách mép dưới của giấy 1-1/8 inch (2,86 cm) đối với khổ giấy 8,5 x 11 inch (US Letter).
+
+Ở trang cuối của bài báo, hãy cố gắng điều chỉnh độ dài hai cột sao cho bằng nhau (đã được tự động xác định trong phần của mẫu này). Sử dụng ngắt từ tự động và kiểm tra chính tả. Hãy thực hiện tốt nhất có thể.
+
+Kiểu chữ, phông chữ và căn lề
+
+Ở bất cứ nơi nào quy định dùng Times, có thể sử dụng Times Roman hoặc New Times Roman.
+
+I.  Văn bản chính
+
+Nhập văn bản chính bằng Times cỡ 10 pt, giãn dòng đơn. Không dùng giãn dòng đôi. Tất cả đoạn văn nên thụt đầu dòng 1 pica (khoảng 1/6 inch, 0,17 inch hoặc 0,422 cm). Bảo đảm văn bản được căn đều hai lề, tức là thẳng lề trái và lề phải cùng lúc. Các câu chỉ nên cách nhau một dấu cách. Không thêm dòng trống giữa các đoạn. Áp dụng style Body Text Indent. Không sửa đổi các style dùng trong mẫu này.
+
+II.  Hình và bảng
+
+Chú thích hình và bảng nên dùng Times cỡ 10 pt, chữ hoa nhỏ, căn trái (style “Caption” trong menu Styles của tài liệu này). Chỉ viết hoa từ đầu tiên của mỗi chú thích hình và tiêu đề bảng. Hình và bảng phải được đánh số riêng. Ví dụ: “Hình 1. Bối cảnh cơ sở dữ liệu,” “Bảng 1. Dữ liệu đầu vào.” Nếu hình hoặc bảng không do tác giả tạo ra, cần ghi nguồn bằng Times cỡ 9 pt, căn trái (style “Source” trong menu Styles của tài liệu này). Chừa 1 pt giữa hình hoặc bảng và dòng ghi nguồn, và 6 pt sau dòng ghi nguồn. Callout nên dùng Times cỡ 9 pt, không in đậm.
+
+Hình và bảng lớn có thể trải rộng qua cả hai cột. Tránh đặt hình và bảng trước lần đầu chúng được nhắc đến trong văn bản. Dùng định dạng .PNG hoặc .JPEG cho các hình và ảnh nhúng.
+
+Chú thích hình phải đặt bên dưới hình. Với hình, cần có nhãn (Hình X), tiêu đề (mô tả ngắn không phải câu hoàn chỉnh) và chú thích (giải thích bằng câu đầy đủ về ý nghĩa, mục đích hoặc cách đọc hình). Tất nhiên, nếu hình được lấy từ nguồn khác, bạn cũng cần trích dẫn hình. Xem ví dụ Hình 1 trong mẫu này.
+
+Nguồn: Tên và/hoặc tổ chức nếu ảnh không phải của tác giả. (Xóa nếu không dùng.)
+
+Hình 1.  Kiểu chú thích để mô tả hình. Vui lòng đọc kỹ mục II để hiểu cách định dạng chú thích cho cả hình và bảng.
+
+Tiêu đề bảng phải đặt phía trên bảng. Nội dung trong bảng giống văn bản chính: Times New Roman cỡ 10 pt (style “Normal” trong menu Styles của tài liệu này). Đầu bảng (và đầu mục con nếu cần) dùng Times New Roman cỡ 10 pt, in đậm (style “Table Head” trong menu Styles của tài liệu này).
+
+Chừa 6 pt giữa tiêu đề bảng và chính bảng đó, và 6 pt sau bảng. Chừa 6 pt giữa phần văn bản phía trên hình và 6 pt sau chú thích hình. Áp dụng style “Caption”.
+
+Nhãn trục của hình thường dễ gây nhầm lẫn. Hãy cố gắng dùng từ thay vì chỉ dùng ký hiệu. Ví dụ, viết đại lượng “Time” hoặc “Time, t”, không chỉ viết “t.” Đặt đơn vị trong ngoặc đơn. Không chỉ ghi đơn vị làm nhãn trục. Trong ví dụ, viết “Magnetization (A/m)” hoặc “Magnetization (A · m-1),” không chỉ viết “A/m.” Không ghi nhãn trục dưới dạng tỉ số giữa đại lượng và đơn vị. Ví dụ, viết “Temperature (K),” không viết “Temperature/K.”
+
+Bảng 1. Các kiểu trình bày bảng.
+
+Hệ số nhân có thể đặc biệt gây nhầm lẫn. Viết “Magnetization (kA/m)” hoặc “Magnetization (103 A/m).” Không viết “Magnetization (A/m) x 1000” vì người đọc sẽ không biết nhãn trục phía trên trong hình có nghĩa là 15 000 A/m hay 0,015 A/m.
+
+Đánh số phương trình liên tiếp, với số phương trình đặt trong ngoặc đơn và căn sát lề phải, như trong (1). Để phương trình gọn hơn, có thể dùng dấu gạch chéo ( / ), hàm exp hoặc số mũ phù hợp. In nghiêng các ký hiệu La-tinh cho đại lượng và biến, nhưng không in nghiêng ký hiệu Hy Lạp. Dùng gạch ngang dài thay vì gạch nối cho dấu trừ. Dùng ngoặc đơn để tránh mơ hồ ở mẫu số. Đặt dấu câu cho phương trình bằng dấu phẩy hoặc dấu chấm khi phương trình là một phần của câu, như trong
+
+a + b = c.
+
+Bảo đảm các ký hiệu trong phương trình đã được định nghĩa trước khi phương trình xuất hiện hoặc ngay sau đó. Dùng “(1),” không dùng “Eq. (1)” hoặc “equation (1),” trừ khi ở đầu câu: “Equation (1) is …”
+
+Dùng số 0 trước dấu thập phân: “0,25,” không viết “,25.” Dùng “cm3,” không dùng “cc.” Không trộn cách viết đầy đủ và viết tắt của đơn vị: “Wb2/m2” hoặc “webers per square meter,” không viết “webers/m2.” Viết đầy đủ đơn vị khi xuất hiện trong văn bản: “…a few henries,” không viết “…a few H.”
+
+Không thêm bất kỳ kiểu đánh số trang nào vào bài báo.
+
+Đề mục cấp một
+
+Đề mục cấp một nên dùng Times cỡ 10 pt, chữ hoa nhỏ, với khoảng cách 12 pt trước và 6 pt sau. Định dạng này được đặt là “Heading 1” trong menu Styles của tài liệu này. Viết hoa chữ cái đầu của danh từ, đại từ, động từ, tính từ và trạng từ; không viết hoa mạo từ, liên từ đẳng lập hoặc giới từ, trừ khi đề mục bắt đầu bằng những từ đó.
+
+I.  Đề mục cấp hai
+
+Như trong đề mục này, đề mục cấp hai nên dùng Times cỡ 10 pt, viết hoa chữ cái đầu, in nghiêng, căn trái, với khoảng cách 9 pt trước và 3 pt sau. Định dạng này được đặt là “Heading 2” trong menu Styles của tài liệu này. Các phần được xác định bằng đề mục cấp hai nên được đánh số bằng chữ số La Mã in hoa, như trong tài liệu này.
+
+Danh sách dấu đầu dòng và đánh số
+
+Định dạng khuyến nghị cho danh sách dấu đầu dòng như sau:
+
+Câu dẫn chỉ kết thúc bằng dấu hai chấm nếu đó là một câu hoàn chỉnh hoặc kết thúc bằng các từ “như sau” hoặc “sau đây.”
+
+Không dùng dòng trống giữa câu dẫn và các mục trong danh sách.
+
+Các mục danh sách (style BulletList) nên thụt vào 0,5 inch từ lề trái và dùng dấu đầu dòng tròn (không dùng gạch ngang, gạch nối hoặc ký hiệu khác).
+
+Với danh sách đánh số, hãy làm theo các hướng dẫn sau:
+
+Dùng khi thứ tự của danh sách là quan trọng (style NumberedList).
+
+Dùng tính năng đánh số tự động có trong style NumberedList.
+
+Trích dẫn khối
+
+Nếu cần tách văn bản thành trích dẫn khối của các đoạn trích, hãy áp dụng style BlockQuote cho đoạn văn để có độ thụt lề đúng. Bạn không cần đặt dấu ngoặc kép quanh khối trích dẫn.
+
+Trích dẫn khối: Các câu trong trích dẫn khối sẽ được thụt lề và chỉ căn trái để cho thấy nội dung này khác với văn bản thân bài.
+
+Chú thích chân trang
+
+Để hỗ trợ người đọc, hãy tránh dùng chú thích chân trang và đưa các nhận xét phụ cần thiết vào văn bản (trong ngoặc đơn nếu bạn muốn, như trong câu này).
+
+Lời cảm ơn (tùy chọn)
+
+Nếu muốn nêu nguồn tài trợ hoặc các đóng góp quan trọng của người khác, hãy đưa lời cảm ơn vào cuối bài báo nhưng trước phần Tài liệu tham khảo. Chỉ đưa thông tin này vào bản camera-ready cuối cùng.
+
+Tài liệu tham khảo
+
+Liệt kê và đánh số toàn bộ tài liệu tham khảo bằng Times cỡ 9 pt, giãn dòng đơn, ở cuối bài báo, với một dòng trống giữa các tài liệu tham khảo. Định dạng này được đặt là “References Text” trong menu Styles của tài liệu này. Tên tác giả trong tài liệu tham khảo được trình bày bằng chữ cái đầu của tên tác giả, theo sau là họ. Dùng et al. khi có từ ba tên trở lên, cả trong trích dẫn trong văn bản và trong phần Tài liệu tham khảo.
+
+Đánh số tài liệu tham khảo liên tiếp trong văn bản và đặt số trích dẫn trong ngoặc vuông (ví dụ, [1]). Dấu câu của câu đặt sau ngoặc [2]. Khi trích dẫn tài liệu trong văn bản, chỉ nêu số tham khảo, như [3]. Không dùng “Ref. [3]” hoặc “reference [3]” trừ khi ở đầu câu: “Reference [3] was the first….” Tác giả dùng kiểu tham khảo/trích dẫn khác sẽ bị trả bài để chỉnh sửa.
+
+Khi phù hợp, hãy đưa tên biên tập viên của các sách được tham khảo. Không dùng ibid. hoặc op. cit. Để biết thông tin chi tiết về trích dẫn kỷ yếu IEEE, hãy tham khảo IEEE Style Guide tại  https://ieeeauthorcenter.ieee.org/wp-content/uploads/IEEE-Reference-Guide.pdf
+
+Dưới đây là ví dụ tài liệu tham khảo cho các loại ấn phẩm phổ biến - bài báo tạp chí, sách và website. Bạn có thể dùng các ví dụ này để kiểm tra bài của mình. Định dạng IEEE được dùng như trong Transactions on Professional Communication, nguồn của các mục mẫu này. Nếu cần trích dẫn một nguồn không thuộc các kiểu này, bạn có thể tham khảo Transactions hoặc hướng dẫn nộp bài trực tuyến của tạp chí để xem các tài liệu thư mục khác viết đúng IEEE style.
+
+Lưu ý rằng tài liệu tham khảo không nên có hyperlink đang hoạt động.
+
+[1] I. Thompson, “Phụ nữ và chủ nghĩa nữ quyền trong truyền thông kỹ thuật,” J. Bus. Tech. Commun., vol. 13, no. 2, pp.154–178, 1999.
+
+[2] M. S. MacNealy, Chiến lược nghiên cứu thực nghiệm trong viết. Boston, MA: Allyn and Bacon, 1999.
+
+[3] J. H. Watt và S. A. van den Berg, Phương pháp nghiên cứu cho khoa học truyền thông. Boston, MA: Allyn and Bacon, 1995.
+
+[4] S. Kleinmann, “Mối quan hệ qua lại giữa văn hóa nơi làm việc và hoạt động rà soát,” trong Viết tại nơi làm việc: Các góc nhìn nghiên cứu mới, R. Spilka, Ed. Carbondale, IL: Southern Illinois University Press, 1993, pp. 56–70.
+
+[5] K. St. Amant, “Giao thức truyền thông văn phòng ảo: Một hệ thống quản lý các nhóm ảo quốc tế,” trong Proc. IEEE Int. Professional Commun. Conf., 2005, pp. 703–717.
+
+[6] Structural Engineering Society–International. [Trực tuyến]. Có tại: http://www.seaint.org.
+
+[7] M. Tohidi et al. "Chọn đúng thiết kế và thiết kế cho đúng: Thử nghiệm nhiều phương án tốt hơn một." trong Proc. ACM-SIGCHI Conf. on Human Factors in Computing Syst. (CHI’06). 2006, pp. 1243-1252.
+
+Giới thiệu tác giả
+
+Phần Giới thiệu tác giả phải bắt đầu cách phần tài liệu tham khảo 12 pt, dùng cùng lề với phần thân bài. Mô tả mỗi tác giả trong một đoạn riêng, bỏ một dòng giữa các tác giả. Cố gắng giới hạn thông tin trong 75 từ hoặc ít hơn, nhưng dài hơn vẫn chấp nhận được.
+
+Tên tác giả là Học viên cao học tại….
+
+Mỗi tên tác giả nên được in đậm. Bạn có thể áp dụng character style AuthorName cho phần này. Có thể thêm ảnh nếu muốn (chiều rộng không vượt quá 1 inch hoặc 96 pixel).
+
+Tiêu đề bài báo đầy đủ
+
+Tiêu đề bài báo đầy đủ
+
+Tiêu đề bài báo đầy đủ
+
+Tên tác giả
+Đơn vị công tác
+author@email.com
+
+Tên tác giả
+Đơn vị công tác
+author@email.com
+
+Tên tác giả
+Đơn vị công tác
+author@email.com
+
+Đầu bảng
+
+Đầu cột của bảng
+
+Đầu cột của bảng
+
+Đầu cột của bảng
+
+Đầu bảng
+
+Đầu mục con của cột
+
+Đầu mục con
+
+Đầu mục con
+
+Nội dung bảng
+
+Nội dung bảng bổ sung

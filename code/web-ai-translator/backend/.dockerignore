@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtualenvs (rat lon — co the >1GB)
+venv/
+venv312/
+.venv/
+env/
+ENV/
+
+# Runtime data (mount qua volume, khong copy vao image)
+workspace/
+browser_data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Tests / docs
+tests/
+*.md
+!README.md
+
+# Secrets (KHONG copy vao image — dung volume / docker secrets)
+.env
+.env.local
+secrets/
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose*.yml

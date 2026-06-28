@@ -1,0 +1,54 @@
+# Dev-only stack: starts just the infra services so you can run `uvicorn`
+# and the Vite dev server locally with hot-reload.
+#
+# Usage:
+#   docker compose -f docker-compose.dev.yml up -d
+#   cd backend && uvicorn app.main:app --reload
+#   cd frontend && npm run dev
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: wat_dev_postgres
+    environment:
+      POSTGRES_USER: wat_user
+      POSTGRES_PASSWORD: wat_pass
+      POSTGRES_DB: wat_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: wat_dev_redis
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    container_name: wat_dev_prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:11.3.0
+    container_name: wat_dev_grafana
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:
+  redis_data:

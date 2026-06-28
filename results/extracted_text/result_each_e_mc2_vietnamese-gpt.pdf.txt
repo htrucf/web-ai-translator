@@ -1,0 +1,128 @@
+
+
+===== PAGE 1 =====
+QUÁN TÍNH CỦA MỘT VẬT CÓ PHỤTHUỘC
+VÀO NĂNG LƯỢNG CHỨA TRONG NÓ
+KHÔNG?
+Bởi A. EINSTEIN
+Ngày 27 tháng 9 năm 1905
+Các kết quảcủa nghiên cứu trước đây dẫn tới một kết luận rất thú vị,
+kết luận sẽđược suy ra ởđây.
+Tôi đã đặt nghiên cứu đó trên cơ sởcác phương trình Maxwell–Hertz
+cho không gian trống, cùng với biểu thức Maxwell cho năng lượng điện
+từcủa không gian, và thêm vào đó là nguyên lý rằng:—
+Các định luật theo đó trạng thái của các hệvật lý biến đổi là độc lập với
+việc các biến đổi trạng thái ấy được quy chiếu vào hệtọa độnào trong hai
+hệtọa độchuyển động tịnh tiến song song đều tương đối với nhau (nguyên
+lý tương đối).
+Trên cơ sởcác nguyên lý này1 tôi đã suy ra, trong sốnhững kết quả
+khác, kết quảsau đây (§ 8):—
+Xét một hệsóng ánh sáng phẳng, được quy chiếu theo hệtọa độ(𝑥, 𝑦, 𝑧),
+có năng lượng 𝑙; giảsửphương của tia sáng (pháp tuyến sóng) tạo với trục
+𝑥của hệmột góc 𝜙. Nếu ta đưa vào một hệtọa độmới (𝜉, 𝜂, 𝜁) chuyển động
+tịnh tiến song song đều đối với hệ(𝑥, 𝑦, 𝑧), và có gốc tọa độchuyển động
+dọc theo trục 𝑥với vận tốc 𝑣, thì lượng ánh sáng này—được đo trong hệ
+(𝜉, 𝜂, 𝜁)—có năng lượng
+𝑙∗= 𝑙1 −𝑣
+𝑐cos 𝜙
+√1 −𝑣2/𝑐2
+trong đó 𝑐ký hiệu vận tốc ánh sáng. Ta sẽsửdụng kết quảnày trong phần
+tiếp theo.
+Xét một vật đứng yên trong hệ(𝑥, 𝑦, 𝑧), và giảsửnăng lượng của nó—
+quy chiếu theo hệ(𝑥, 𝑦, 𝑧)—là 𝐸0. Gọi năng lượng của vật đối với hệ(𝜉, 𝜂, 𝜁),
+hệchuyển động như trên với vận tốc 𝑣, là 𝐻0.
+Giảsửvật này phát ra, theo một hướng tạo với trục 𝑥một góc 𝜙, các sóng
+ánh sáng phẳng có năng lượng 1
+2𝐿khi đo tương đối với (𝑥, 𝑦, 𝑧), đồng thời
+phát ra một lượng ánh sáng bằng như vậy theo hướng ngược lại. Trong khi
+đó, vật vẫn đứng yên đối với hệ(𝑥, 𝑦, 𝑧). Nguyên lý bảo toàn năng lượng
+phải áp dụng cho quá trình này, và thật vậy (theo nguyên lý tương đối) đối
+với cảhai hệtọa độ.
+1Nguyên lý vềtính hằng định của vận tốc ánh sáng dĩ nhiên đã được chứa trong các phương
+trình Maxwell.
+1
+
+
+===== PAGE 2 =====
+Nếu ta gọi năng lượng của vật sau khi phát xạánh sáng lần lượt là 𝐸1
+hoặc 𝐻1, khi đo tương đối với hệ(𝑥, 𝑦, 𝑧) hoặc (𝜉, 𝜂, 𝜁), thì bằng cách dùng
+hệthức nêu trên ta thu được
+𝐸0 = 𝐸1 + 1
+2𝐿+ 1
+2𝐿,
+𝐻0 = 𝐻1 + 1
+2𝐿1 −𝑣
+𝑐cos 𝜙
+√1 −𝑣2/𝑐2 + 1
+2𝐿1 + 𝑣
+𝑐cos 𝜙
+√1 −𝑣2/𝑐2
+= 𝐻1 +
+𝐿
+√1 −𝑣2/𝑐2 .
+Lấy hiệu hai phương trình này, ta được
+𝐻0 −𝐸0 −(𝐻1 −𝐸1) = 𝐿{
+1
+√1 −𝑣2/𝑐2 −1} .
+Hai hiệu có dạng 𝐻−𝐸xuất hiện trong biểu thức này có ý nghĩa vật lý
+đơn giản. 𝐻và 𝐸là các giá trịnăng lượng của cùng một vật khi quy chiếu
+vào hai hệtọa độchuyển động tương đối với nhau, trong đó vật đứng yên
+trong một trong hai hệấy (hệ(𝑥, 𝑦, 𝑧)). Vì vậy rõ ràng là hiệu 𝐻−𝐸chỉcó
+thểkhác với động năng 𝐾của vật, đối với hệkia (𝜉, 𝜂, 𝜁), bởi một hằng số
+cộng 𝐶, hằng sốnày phụthuộc vào việc chọn các hằng sốcộng tùy ý của
+các năng lượng 𝐻và 𝐸. Do đó ta có thểđặt
+𝐻0 −𝐸0 = 𝐾0 + 𝐶,
+𝐻1 −𝐸1 = 𝐾1 + 𝐶,
+vì 𝐶không thay đổi trong quá trình phát xạánh sáng. Vì thếta có
+𝐾0 −𝐾1 = 𝐿{
+1
+√1 −𝑣2/𝑐2 −1} .
+Động năng của vật đối với (𝜉, 𝜂, 𝜁) giảm đi do kết quảcủa sựphát xạánh
+sáng, và độgiảm ấy độc lập với các tính chất của vật. Hơn nữa, hiệu 𝐾0−𝐾1,
+giống như động năng của electron (§ 10), phụthuộc vào vận tốc.
+Bỏqua các đại lượng bậc bốn và bậc cao hơn, ta có thểđặt
+𝐾0 −𝐾1 = 1
+2
+𝐿
+𝑐2 𝑣2.
+Từphương trình này suy ra trực tiếp rằng:—
+2
+
+
+===== PAGE 3 =====
+Nếu một vật phát ra năng lượng 𝐿dưới dạng bức xạ, khối lượng của nó
+giảm đi 𝐿/𝑐2. Việc năng lượng bịrút khỏi vật trởthành năng lượng bức xạ
+hiển nhiên không tạo nên khác biệt nào, vì vậy ta đi tới kết luận tổng quát
+hơn rằng
+Khối lượng của một vật là thước đo năng lượng chứa trong nó; nếu năng
+lượng thay đổi một lượng 𝐿, thì khối lượng thay đổi theo cùng chiều một
+lượng 𝐿/9 × 1020, trong đó năng lượng được đo bằng erg, còn khối lượng
+được đo bằng gam.
+Không phải là không thểrằng với những vật có năng lượng chứa bên
+trong biến thiên ởmức rất cao (ví dụnhư các muối radium), lý thuyết này
+có thểđược kiểm nghiệm thành công.
+Nếu lý thuyết phù hợp với các sựkiện, bức xạtruyền quán tính giữa
+các vật phát xạvà các vật hấp thụ.
+VỀTÀI LIỆU NÀY
+Ấn bản này của Does the Inertia of a Body Depend upon its Energy-Content của
+Einstein dựa trên bản dịch tiếng Anh từbài báo gốc tiếng Đức năm 1905 của ông
+(được công bốvới tên Ist die Trägheit eines Körpers von seinem Energiegehalt ab-
+hängig?, trong Annalen der Physik. 18:639, 1905), bản dịch đã xuất hiện trong cuốn
+sách The Principle of Relativity, xuất bản năm 1923 bởi Methuen and Company, Ltd.
+ởLondon. Phần lớn các bài trong tuyển tập đó là các bản dịch tiếng Anh do W. Per-
+rett và G.B. Jeffery thực hiện từtiếng Đức của Das Relativitätsprinzip, ấn bản thứ4,
+xuất bản năm 1922 bởi Tuebner. Tất cảcác nguồn này hiện thuộc miền công cộng;
+tài liệu này, được dẫn xuất từchúng, vẫn thuộc miền công cộng và có thểđược sao
+chép bằng bất kỳcách thức hay phương tiện nào mà không cần xin phép, không bị
+hạn chế, không cần ghi công, và không cần bồi hoàn.
+Chú thích cuối trang được giữnhư trong ấn bản năm 1923. Bản dịch tiếng Anh
+năm 1923 đã điều chỉnh ký hiệu dùng trong bài báo năm 1905 của Einstein đểphù
+hợp với cách dùng vào thập niên 1920; chẳng hạn, 𝑐ký hiệu tốc độánh sáng, trái
+với 𝑉mà Einstein dùng năm 1905. Trong bài báo này Einstein dùng 𝐿đểký hiệu
+năng lượng; câu in nghiêng trong phần kết luận có thểđược viết thành phương trình
+“𝑚= 𝐿/𝑐2”, và khi dùng ký hiệu hiện đại hơn là 𝐸thay cho 𝐿đểbiểu thịnăng lượng,
+có thểđược viết lại một cách hiển nhiên thành “𝐸= 𝑚𝑐2”.
+Ấn bản này do John Walker chuẩn bị. Phiên bản hiện thời của tài liệu này có sẵn
+ởnhiều định dạng trên trang Web của người biên tập:
+http://www.fourmilab.ch/
+3

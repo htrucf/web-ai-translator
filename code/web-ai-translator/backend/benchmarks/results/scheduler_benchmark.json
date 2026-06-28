@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-05-21 21:21:41",
+  "results": [
+    {
+      "strategy": "round_robin",
+      "throughput_per_hour": 490.95,
+      "completion_rate": 1.0,
+      "survival_rate": 0.2,
+      "first_try_rate": 0.9023,
+      "p50_latency": 6.83,
+      "p95_latency": 8.63,
+      "cooldowns": 39,
+      "sim_duration_h": 0.73
+    },
+    {
+      "strategy": "cooldown_aware",
+      "throughput_per_hour": 420.81,
+      "completion_rate": 1.0,
+      "survival_rate": 0.2,
+      "first_try_rate": 0.8911,
+      "p50_latency": 6.96,
+      "p95_latency": 8.59,
+      "cooldowns": 44,
+      "sim_duration_h": 0.86
+    },
+    {
+      "strategy": "lru",
+      "throughput_per_hour": 473.39,
+      "completion_rate": 1.0,
+      "survival_rate": 0.2,
+      "first_try_rate": 0.9023,
+      "p50_latency": 7.1,
+      "p95_latency": 8.69,
+      "cooldowns": 39,
+      "sim_duration_h": 0.76
+    },
+    {
+      "strategy": "adaptive",
+      "throughput_per_hour": 384.56,
+      "completion_rate": 1.0,
+      "survival_rate": 0.2,
+      "first_try_rate": 0.8889,
+      "p50_latency": 6.8,
+      "p95_latency": 8.53,
+      "cooldowns": 45,
+      "sim_duration_h": 0.94
+    }
+  ],
+  "per_account_uses": {
+    "round_robin": {
+      "acct1@sim": 110,
+      "acct2@sim": 99,
+      "acct3@sim": 56,
+      "acct4@sim": 54,
+      "acct5@sim": 80
+    },
+    "cooldown_aware": {
+      "acct1@sim": 95,
+      "acct2@sim": 92,
+      "acct3@sim": 78,
+      "acct4@sim": 70,
+      "acct5@sim": 69
+    },
+    "lru": {
+      "acct1@sim": 99,
+      "acct2@sim": 78,
+      "acct3@sim": 51,
+      "acct4@sim": 118,
+      "acct5@sim": 53
+    },
+    "adaptive": {
+      "acct1@sim": 101,
+      "acct2@sim": 74,
+      "acct3@sim": 73,
+      "acct4@sim": 79,
+      "acct5@sim": 78
+    }
+  },
+  "per_account_fails": {
+    "round_robin": {
+      "acct1@sim": 6,
+      "acct2@sim": 12,
+      "acct3@sim": 8,
+      "acct4@sim": 6,
+      "acct5@sim": 7
+    },
+    "cooldown_aware": {
+      "acct1@sim": 7,
+      "acct2@sim": 10,
+      "acct3@sim": 10,
+      "acct4@sim": 8,
+      "acct5@sim": 9
+    },
+    "lru": {
+      "acct1@sim": 9,
+      "acct2@sim": 9,
+      "acct3@sim": 7,
+      "acct4@sim": 7,
+      "acct5@sim": 7
+    },
+    "adaptive": {
+      "acct1@sim": 8,
+      "acct2@sim": 10,
+      "acct3@sim": 10,
+      "acct4@sim": 8,
+      "acct5@sim": 9
+    }
+  }
+}

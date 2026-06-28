@@ -1,0 +1,290 @@
+
+
+===== PAGE 1 =====
+Báo cáo của Nhóm chuyên gia độc lập về
+Trí tuệ nhân tạo
+và Văn hóa
+2025
+
+
+===== PAGE 2 =====
+Báo cáo của Nhóm chuyên gia độc lập CULTAI
+Thiết kế đồ họa và thiết kế bìa: Momo Scacchi
+Thiết kế đồ họa cho dàn trang: Thaísa Plein
+
+
+===== PAGE 3 =====
+Báo cáo này do một Nhóm chuyên gia độc lập được UNESCO triệu tập biên soạn nhằm thu thập các
+quan điểm và ý tưởng về văn hóa và trí tuệ nhân tạo. Thừa nhận vai trò trung tâm của tri thức và ý
+tưởng trong quá trình chuyển đổi, sáng kiến này phản ánh vai trò của UNESCO như một phòng thí
+nghiệm ý tưởng. Bằng cách tạo ra những nhận định mới, tài liệu này hướng tới việc đóng góp - cùng
+với các nguồn khác - vào các cuộc thảo luận tại MONDIACULT 2025. Trừ khi có nêu rõ khác đi, các
+phát hiện, diễn giải và kết luận trong tài liệu này là của các chuyên gia độc lập đã chuẩn bị tài liệu và
+không nhất thiết đại diện cho quan điểm của UNESCO, các Quốc gia Thành viên, hoặc bất kỳ thiết
+chế nào, cũng như không ràng buộc Tổ chức dưới bất kỳ hình thức nào.
+
+
+===== PAGE 4 =====
+MỤC LỤC
+LỜI CẢM ƠN
+7
+TÓM TẮT ĐIỀU HÀNH
+9
+I. GIỚI THIỆU
+11
+II. LẬP BẢN ĐỒ BỐI CẢNH ĐẠO ĐỨC CỦA AI TRONG VĂN HÓA
+13
+A. AI, một công cụ hai mặt: Cơ hội và thách thức đối với văn hóa
+13
+1. Cơ hội
+13
+2. Thách thức
+14
+B. Tổng quan các sáng kiến then chốt của UNESCO và Liên Hợp Quốc tại giao điểm giữa AI và văn hóa
+14
+C. Các công cụ và quy định khác
+16
+D. Kết luận
+18
+Tài liệu tham khảo
+19
+III. QUYỀN VĂN HÓA TRONG KỶ NGUYÊN SỐ: CÔNG BẰNG, ĐA DẠNG VÀ BẢO VỆ TÀI SẢN CHUNG VĂN HÓA TRONG THỜI ĐẠI AI
+21
+A. Đánh giá lại mối liên hệ giữa văn hóa và AI: Công nhận giá trị nhận thức của dữ liệu văn hóa
+21
+B. Bảo đảm tiếp cận công bằng với các công cụ AI trong lĩnh vực văn hóa
+23
+C. Xử lý thiên kiến thuật toán và bảo vệ đa dạng văn hóa trong các hệ thống AI
+24
+D. Bảo vệ quyền văn hóa và phân phối lại giá trị do việc AI sử dụng dữ liệu văn hóa tạo ra
+25
+E. Kết luận
+27
+Tài liệu tham khảo
+29
+IV. TÁC ĐỘNG CỦA AI ĐỐI VỚI CHUỖI GIÁ TRỊ VĂN HÓA TRONG NỀN KINH TẾ SÁNG TẠO
+31
+A. Đặt vấn đề
+31
+B. Vai trò tiên phong của UNESCO trong thúc đẩy công bằng trong nền kinh tế sáng tạo được AI biến đổi
+32
+C. Tác động đột phá của AI trên toàn chuỗi giá trị sáng tạo: Cơ hội và thách thức
+33
+1. Bối cảnh sáng tạo mới: Ba giai đoạn chuyển đổi
+33
+2. Các thách thức kinh tế và xã hội
+35
+D. Các mô hình kinh tế thay thế: Hỗ trợ đa dạng và độc lập
+35
+1. Trao quyền cho cộng đồng sáng tạo: Quyền, sự công nhận và năng lực chủ động
+36
+2. Tăng cường các ngành công nghiệp sáng tạo địa phương
+36
+3. Dân chủ hóa khả năng tiếp cận: Đa nguyên thuật toán và năng lực hiểu biết
+37
+4. Hợp tác quốc tế
+38
+E. Kết luận
+39
+Tài liệu tham khảo
+40
+V. GIÁO DỤC VĂN HÓA TRONG KỶ NGUYÊN AI: ĐÀO TẠO TÀI NĂNG CỦA NGÀY MAI
+40
+A. Tích hợp năng lực AI vào chương trình nghệ thuật
+43
+B. Phát triển kỹ năng lai và năng lực xuyên ngành cho các nghề văn hóa
+44
+C. Bảo tàng & thiết chế văn hóa: Gieo mầm AI
+45
+D. Kết luận
+47
+Tài liệu tham khảo
+47
+Báo cáo của Nhóm chuyên gia độc lập CULTAI  4
+
+
+===== PAGE 5 =====
+VI. KHÍ HẬU, VĂN HÓA VÀ AI VÌ BỀN VỮNG MÔI TRƯỜNG
+48
+A. Tác động môi trường của số hóa: Hướng tới các thực hành có trách nhiệm sinh thái
+49
+1. Thực hành AI carbon thấp trong sản xuất văn hóa
+50
+2. Khung nghiên cứu liên ngành cho bền vững văn hóa
+50
+B. Sáng tạo nghệ thuật và bền vững: AI như một công cụ nâng cao nhận thức môi trường
+51
+1. Các dự án nghệ thuật dùng AI để nâng cao nhận thức về khí hậu
+51
+2. Tối ưu hóa quản lý năng lượng trong các thiết chế văn hóa
+52
+C. Kết luận
+53
+Tài liệu tham khảo
+54
+VII. DI SẢN BỊ ĐE DỌA VÀ AI: CÔNG CỤ BẢO VỆ VÀ KHẢ NĂNG CHỐNG CHỊU
+56
+A. Di sản số: AI để bảo vệ và bảo tồn di sản văn hóa
+56
+1. Phục dựng và tái tạo số: Hồi sinh các hiện vật văn hóa bằng AI
+56
+B. Chống buôn bán bất hợp pháp tài sản văn hóa
+57
+1. Blockchain và tính xác thực văn hóa: Vai trò bổ trợ của AI
+58
+C. Số hóa và bảo vệ: Bảo vệ di sản văn hóa đang gặp rủi ro
+58
+1. Quy trình quốc tế về số hóa trong tình huống khủng hoảng
+58
+2. Tư liệu hóa 3D và đánh giá thiệt hại: AI cho lập kế hoạch bảo tồn khẩn cấp
+59
+3. Các nguy cơ có thể phát sinh từ việc lạm dụng AI trong bối cảnh di sản văn hóa
+59
+4. AI cho phản ứng hậu thảm họa nhanh hơn: Ưu tiên, hành động, lập kế hoạch
+60
+D. Bảo tồn ngôn ngữ và tri thức tổ tiên: AI và truyền thống truyền khẩu
+61
+1. Mô hình ngôn ngữ AI cho các ngôn ngữ có nguy cơ biến mất
+61
+2. Hỗ trợ cộng đồng địa phương bằng AI
+61
+3. Kể chuyện nhập vai và tự sự cộng đồng
+62
+E. Kết luận
+62
+Tài liệu tham khảo
+63
+VIII. AI, TỰ DO VÀ CHỦ QUYỀN VĂN HÓA
+65
+A. Trao quyền so với kiểm soát
+66
+B. Quyền lực thuật toán và chủ quyền
+67
+C. Độc quyền AI và khủng hoảng hạ tầng văn hóa
+68
+D. Kết luận
+69
+Tài liệu tham khảo
+70
+KẾT LUẬN
+71
+TIỂU SỬ CÁC THÀNH VIÊN NHÓM CHUYÊN GIA
+73
+HÌNH
+32
+Hình 1. Chuỗi giá trị văn hóa trong môi trường số: từ cấu hình ‘đường ống’ sang mô hình mạng lưới
+32
+5
+
+
+===== PAGE 6 =====
+Báo cáo của Nhóm chuyên gia độc lập CULTAI  6
+
+
+===== PAGE 7 =====
+LỜI CẢM ƠN
+Nhóm chuyên gia độc lập về Trí tuệ nhân tạo và Văn hóa (CULTAI), do UNESCO triệu tập, xin bày tỏ lòng biết ơn vì cơ hội được
+cùng làm việc để chuẩn bị báo cáo này. Quá trình này là một nỗ lực tập thể, được định hình bởi những kinh nghiệm, góc nhìn và
+cách tiếp cận liên ngành đa dạng của các thành viên.
+Tham gia với tư cách cá nhân, mỗi người trong mười chuyên gia và hai đại diện thanh niên đã mang đến những nhận định riêng
+biệt; chính thông qua đối thoại, trao đổi và hợp tác mà tài liệu này được hoàn thành.
+Các thành viên của Nhóm gồm:
+Mercedez Bunz
+Brendan Ciecko
+Salim Dada
+Kim Jeong Han
+Lethabo Huma
+Joe Kallas
+Octavio Kulesz
+Roman Lipski
+Ramon López de Mantaras
+Alejandra López Gabrielidis
+Ojoma Ochai
+Shrey Maurya
+Nhóm đặc biệt trân trọng Chủ tịch Nhóm, Salim Dada, người đã dẫn dắt công việc bằng sự định hướng thận trọng và tận tâm
+trong suốt quá trình. Về phía UNESCO, công việc được điều phối bởi Andrea Detmer Latorre.
+Trên hết, Nhóm hy vọng rằng những suy ngẫm được trình bày tại đây sẽ góp phần thúc đẩy quyền văn hóa, sự đa dạng và tính
+bền vững trong thời đại trí tuệ nhân tạo.
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+7
+
+
+===== PAGE 8 =====
+Báo cáo của Nhóm chuyên gia độc lập CULTAI  8
+
+
+===== PAGE 9 =====
+TÓM TẮT ĐIỀU HÀNH
+Nhóm chuyên gia độc lập về Trí tuệ nhân tạo và Văn hóa (CULTAI), do UNESCO triệu tập, đã xem xét cách AI đang định hình lại sáng tạo, di sản và
+các hệ sinh thái văn hóa trên toàn thế giới. Phân tích của Nhóm nhấn mạnh một thực tế cấp bách: trí tuệ nhân tạo đang phát triển nhanh hơn năng
+lực quản trị văn hóa, làm gia tăng các khoảng cách và đặt ra những rủi ro mới, đồng thời cũng mở ra các cơ hội mạnh mẽ để củng cố đổi mới và
+khả năng chống chịu của văn hóa.
+AI đã và đang biến đổi cách văn hóa được sáng tạo, chia sẻ và bảo tồn. AI có thể mở rộng khả năng tiếp cận, bảo vệ di sản, khuếch đại các tiếng
+nói đa dạng và mở ra những khả năng sáng tạo mới. Đồng thời, AI cũng có thể làm sâu sắc thêm bất bình đẳng, gia tăng thiên kiến, đẩy nhanh sự
+đồng nhất hóa văn hóa và làm tăng chi phí môi trường.
+Báo cáo xác định các thách thức cốt lõi:
+Vượt trước năng lực quản trị, khi tốc độ tăng tốc của AI vượt quá khả năng thích ứng của các hệ sinh thái văn hóa, đe dọa chủ quyền, tính đa
+nguyên và giám sát dân chủ;
+Củng cố thiên kiến và sự đồng nhất hóa, khi dữ liệu huấn luyện mất cân bằng và cá nhân hóa thuật toán tái sản xuất định kiến và thúc đẩy
+các nền độc canh văn hóa;
+Làm suy yếu quyền văn hóa, thông qua việc khai thác dữ liệu văn hóa chưa được bảo vệ mà không có sự đồng ý, ghi nhận hoặc bồi thường,
+đồng thời gạt ra bên lề các nền văn hóa thiểu số; và
+Xói mòn sáng tạo và kỹ năng, khi sự phụ thuộc quá mức vào AI làm suy yếu năng lực sáng tạo và năng lực nhận thức của con người.
+Báo cáo cũng nhấn mạnh các cơ hội, đáng chú ý là:
+Mở rộng sáng tạo và khả năng tiếp cận, bằng cách hạ thấp rào cản gia nhập và cho phép các hình thức sáng tạo mới;
+Bảo vệ di sản văn hóa, thông qua phục dựng, bảo tồn, ứng phó sau thảm họa và gìn giữ các ngôn ngữ có nguy cơ biến mất;
+Tăng cường các ngành văn hóa và sáng tạo, khi tự động hóa các nhiệm vụ thường lệ giúp giảm chi phí và nâng cao năng lực cạnh tranh của
+các doanh nghiệp nhỏ; và
+Thúc đẩy các cơ hội học tập công bằng, trong đó bảo tàng và các thiết chế văn hóa nuôi dưỡng năng lực hiểu biết về AI, sự sáng tạo và tư
+duy phản biện.
+Nhóm chuyên gia độc lập kêu gọi hợp tác toàn cầu và quản trị bao trùm để bảo đảm rằng AI củng cố đa dạng văn hóa, công bằng và bền vững.
+Các cách tiếp cận AI dựa trên quyền, thực hành xanh, nền kinh tế sáng tạo công bằng và tương lai văn hóa bền vững cần đặt sáng tạo của con
+người và quyền văn hóa ở trung tâm của phát triển công nghệ.
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+9
+
+
+===== PAGE 10 =====
+Văn hóa và Trí tuệ nhân tạo
+Thách thức
+Tăng tốc công nghệ
+nhanh trong các lĩnh
+vực sáng tạo
+Tiếp cận không
+đồng đều giữa các
+khu vực
+Gia tăng lo ngại đạo đức
+về quyền và quyền sở
+hữu
+Yêu cầu hành động
+Quản trị AI dựa trên
+quyền: minh bạch, biện
+pháp bảo vệ, bồi
+thường công bằng
+Nền kinh tế sáng tạo công
+bằng và đa dạng: đa dạng
+thuật toán, hạ tầng công, phát
+triển kỹ năng
+Tương lai bền vững và có khả
+năng chống chịu: AI ít tác
+động, bảo vệ di sản, đưa tri
+thức địa phương vào quá trình
+phát triển

@@ -1,0 +1,27 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: web-ai-translator-backend
+    metrics_path: /metrics
+    # docker DNS round-robins service tasks for us
+    static_configs:
+      - targets: ["backend:8000"]
+
+  - job_name: redis
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["redis:6379"]
+    # The bare redis image doesn't ship redis_exporter; this stanza is wired
+    # so production can drop in https://github.com/oliver006/redis_exporter
+    # without a Prometheus restart.
+
+  - job_name: postgres
+    static_configs:
+      - targets: ["postgres:5432"]
+    # Same story — production attaches postgres_exporter.

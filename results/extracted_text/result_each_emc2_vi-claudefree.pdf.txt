@@ -1,0 +1,137 @@
+
+
+===== PAGE 1 =====
+QUÁN TÍNH CỦA VẬT CÓ PHỤTHUỘC
+VÀO HÀM LƯỢNG NĂNG LƯỢNG CỦA NÓ KHÔNG?
+Tác giả: A. EINSTEIN
+27 tháng 9, 1905
+Các kết quảcủa nghiên cứu trước dẫn đến một kết luận rất thú vị, sẽđược suy
+luận ởđây.
+Tôi đã dựa cuộc điều tra đó trên các phương trình Maxwell–Hertz cho không
+gian trống, cùng với biểu thức Maxwell về năng lượng điện từcủa không gian, và
+thêm vào đó là nguyên lý sau:—
+Các định luật chi phối sựthay đổi trạng thái của các hệvật lý không
+phụthuộc vào việc những thay đổi trạng thái này được quy chiếu về
+hệtọa độnào trong hai hệtọa độđang chuyển động tịnh tiến đều song
+song với nhau (nguyên lý tương đối).
+Dựa trên những nguyên lý này∗tôi đã suy ra, trong số các kết quảkhác, kết quả
+sau đây (§ 8):—
+Cho một hệsóng phẳng ánh sáng, được quy về hệtọa độ(x, y, z), có năng
+lượng l; cho hướng của tia sáng (pháp tuyến sóng) tạo với trục x của hệmột góc ϕ.
+Nếu ta đưa vào một hệtọa độmới (ξ, η, ζ) chuyển động tịnh tiến đều song song với
+hệ(x, y, z), với gốc tọa độchuyển động dọc theo trục x với vận tốc v, thì lượng
+ánh sáng này—đo trong hệ(ξ, η, ζ)—có năng lượng
+l∗= l
+1 −v
+c cos ϕ
+√
+1 −v2/c2
+trong đó c ký hiệu vận tốc ánh sáng. Chúng ta sẽsửdụng kết quảnày trong phần
+tiếp theo.
+Cho có một vật đứng yên trong hệ(x, y, z), và năng lượng của nó—quy về hệ
+(x, y, z)—là E0. Năng lượng của vật đó trong hệ(ξ, η, ζ) chuyển động như trên
+với vận tốc v, là H0.
+Cho vật này phát ra, theo hướng tạo góc ϕ với trục x, sóng phẳng ánh sáng
+có năng lượng 1
+2L đo trong hệ(x, y, z), và đồng thời phát ra một lượng ánh sáng
+bằng nhau theo hướng ngược lại. Trong khi đó, vật vẫn đứng yên trong hệ(x, y, z).
+Nguyên lý bảo toàn năng lượng phải áp dụng cho quá trình này, và thực sự(theo
+nguyên lý tương đối) đối với cảhai hệtọa độ. Nếu ta gọi năng lượng của vật sau
+khi phát xạánh sáng lần lượt là E1 hay H1, đo trong hệ(x, y, z) hay (ξ, η, ζ), thì
+∗Nguyên lý về tính bất biến của vận tốc ánh sáng tất nhiên đã được bao hàm trong các phương
+trình Maxwell.
+1
+
+
+===== PAGE 2 =====
+khi áp dụng quan hệđã cho ởtrên, ta thu được
+E0 = E1 + 1
+2L + 1
+2L,
+H0 = H1 + 1
+2L
+1 −v
+c cos ϕ
+√
+1 −v2/c2 + 1
+2L
+1 + v
+c cos ϕ
+√
+1 −v2/c2 = H1 +
+L
+√
+1 −v2/c2 .
+Lấy hiệu hai phương trình, ta được
+H0 −E0 −(H1 −E1) = L
+(
+1
+√
+1 −v2/c2 −1
+)
+.
+Hai hiệu có dạng H −E xuất hiện trong biểu thức này mang ý nghĩa vật lý đơn
+giản. H và E là các giá trịnăng lượng của cùng một vật được quy về hai hệtọa độ
+đang chuyển động tương đối với nhau, trong đó vật đứng yên trong một trong hai
+hệ(hệ(x, y, z)). Do đó, hiệu H −E chỉcó thểkhác động năng K của vật trong hệ
+kia (ξ, η, ζ) bởi một hằng số cộng C, phụthuộc vào sựlựa chọn các hằng số cộng
+tùy ý của các năng lượng H và E. Do đó, ta có thểđặt
+H0 −E0 = K0 + C,
+H1 −E1 = K1 + C,
+do C không thay đổi trong quá trình phát xạánh sáng. Vì vậy, ta có
+K0 −K1 = L
+(
+1
+√
+1 −v2/c2 −1
+)
+.
+Động năng của vật trong hệ(ξ, η, ζ) giảm do quá trình phát xạánh sáng, và
+lượng giảm này không phụthuộc vào các tính chất của vật. Hơn nữa, hiệu K0−K1,
+cũng như động năng của electron (§ 10), phụthuộc vào vận tốc.
+Bỏqua các đại lượng bậc bốn và cao hơn, ta có thểđặt
+K0 −K1 = 1
+2
+L
+c2 v2.
+Từphương trình này suy ra trực tiếp rằng:—
+Nếu một vật phát ra năng lượng L dưới dạng bức xạ, khối lượng của nó giảm
+đi L/c2. Thực tế rằng năng lượng được rút ra khỏi vật trởthành năng lượng bức xạ
+rõ ràng không tạo ra sựkhác biệt nào, do đó ta đi đến kết luận tổng quát hơn rằng
+Khối lượng của một vật là thước đo hàm lượng năng lượng của nó; nếu
+năng lượng thay đổi một lượng L, thì khối lượng thay đổi theo cùng
+chiều một lượng L/9×1020, trong đó năng lượng được đo bằng erg,
+và khối lượng bằng gram.
+2
+
+
+===== PAGE 3 =====
+Không phải là không thểrằng đối với các vật có hàm lượng năng lượng biến
+thiên mạnh (chẳng hạn như muối radium), lý thuyết này có thểđược kiểm nghiệm
+thành công.
+Nếu lý thuyết phù hợp với thực tế, bức xạsẽtruyền quán tính giữa các vật phát
+và hấp thụ.
+Về Tài Liệu Này
+Phiên bản này của bài báo Quán Tính của Vật Có PhụThuộc vào Hàm Lượng Năng
+Lượng của Nó Không? của Einstein dựa trên bản dịch tiếng Anh từbài báo gốc
+năm 1905 bằng tiếng Đức của ông (được xuất bản với tên Ist die Trägheit eines
+Körpers von seinem Energiegehalt abhängig?, trong Annalen der Physik. 18:639,
+1905), xuất hiện trong cuốn sách The Principle of Relativity, được xuất bản năm
+1923 bởi Methuen and Company, Ltd. tại London. Hầu hết các bài báo trong tuyển
+tập đó là bản dịch tiếng Anh của W. Perrett và G.B. Jeffery từtiếng Đức Das Rel-
+ativatsprinzip, xuất bản lần thứ4, được Tuebner xuất bản năm 1922. Tất cảnhững
+nguồn này hiện đã thuộc phạm vi công cộng; tài liệu này, được suy ra từchúng, vẫn
+thuộc phạm vi công cộng và có thểđược tái tạo dưới bất kỳhình thức hay phương
+tiện nào mà không cần sựcho phép, hạn chế, ghi công hay thù lao.
+Chú thích cuối trang là như nó đã xuất hiện trong ấn bản năm 1923. Bản dịch
+tiếng Anh năm 1923 đã sửa đổi ký hiệu được sửdụng trong bài báo năm 1905 của
+Einstein cho phù hợp với ký hiệu đang được sửdụng vào những năm 1920; ví dụ, c
+ký hiệu tốc độánh sáng, thay vì V mà Einstein dùng vào năm 1905. Trong bài báo
+này, Einstein dùng L đểký hiệu năng lượng; câu được in nghiêng trong phần kết
+luận có thểđược viết dưới dạng phương trình “m = L/c2”, mà khi dùng E hiện
+đại hơn thay vì L đểký hiệu năng lượng, có thểđược viết lại một cách đơn giản là
+“E = mc2”.
+Phiên bản này được chuẩn bịbởi John Walker. Phiên bản hiện tại của tài liệu
+này có sẵn ởnhiều định dạng từtrang web của biên tập viên:
+http://www.fourmilab.ch/
+3

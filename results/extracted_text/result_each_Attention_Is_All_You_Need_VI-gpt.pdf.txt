@@ -1,0 +1,762 @@
+
+
+===== PAGE 1 =====
+Miễn là có ghi công phù hợp, Google cho phép tái tạo các bảng và hình trong bài báo này chỉnhằm phục vụcác tác phẩm báo chí hoặc
+học thuật.
+Attention Is All You Need
+Ashish Vaswani∗
+Noam Shazeer∗
+Niki Parmar∗
+Google Brain
+Google Brain
+Google Research
+avaswani@google.com
+noam@google.com
+nikip@google.com
+Jakob Uszkoreit∗
+Llion Jones∗
+Aidan N. Gomez∗†
+Google Research
+Google Research
+University of Toronto
+usz@google.com
+llion@google.com
+aidan@cs.toronto.edu
+Łukasz Kaiser∗
+Illia Polosukhin∗‡
+Google Brain
+lukaszkaiser@google.com
+illia.polosukhin@gmail.com
+Tóm tắt
+Các mô hình chuyển đổi chuỗi (sequence transduction) chiếm ưu thếhiện nay dựa trên những mạng
+nơ-ron hồi tiếp hoặc tích chập phức tạp, bao gồm một bộmã hóa và một bộgiải mã. Các mô hình có hiệu
+năng tốt nhất còn kết nối bộmã hóa và bộgiải mã thông qua cơ chếchú ý (attention mechanism). Chúng
+tôi đềxuất một kiến trúc mạng mới, đơn giản, gọi là Transformer, chỉdựa trên các cơ chếchú ý, loại bỏ
+hoàn toàn hồi tiếp và tích chập. Các thí nghiệm trên hai tác vụdịch máy cho thấy những mô hình này có
+chất lượng vượt trội, đồng thời dễsong song hóa hơn và cần ít thời gian huấn luyện hơn đáng kể. Mô hình
+của chúng tôi đạt 28.4 BLEU trên tác vụdịch Anh-sang-Đức WMT 2014, cải thiện hơn 2 BLEU so với các kết
+quảtốt nhất hiện có, bao gồm cảcác mô hình tổhợp. Trên tác vụdịch Anh-sang-Pháp WMT 2014, mô hình
+của chúng tôi thiết lập điểm BLEU trạng thái tốt nhất mới cho một mô hình đơn là 41.8 sau khi huấn luyện
+3.5 ngày trên tám GPU, chỉbằng một phần nhỏchi phí huấn luyện của các mô hình tốt nhất trong tài liệu.
+Chúng tôi cũng cho thấy Transformer khái quát tốt sang các tác vụkhác bằng cách áp dụng thành công nó
+cho phân tích cú pháp thành phần tiếng Anh, cảkhi có nhiều dữliệu huấn luyện lẫn khi dữliệu bịgiới hạn.
+∗Đóng góp ngang nhau. Thứtựliệt kê là ngẫu nhiên. Jakob đềxuất thay thếRNN bằng tựchú ý và khởi động nỗlực đánh giá ý tưởng
+này. Ashish, cùng với Illia, thiết kếvà triển khai các mô hình Transformer đầu tiên và tham gia then chốt vào mọi khía cạnh của công
+trình này. Noam đềxuất chú ý tích vô hướng có tỉlệ, chú ý đa đầu và biểu diễn vịtrí không tham số, đồng thời trởthành người còn
+lại tham gia gần như mọi chi tiết. Niki thiết kế, triển khai, tinh chỉnh và đánh giá vô sốbiến thểmô hình trong codebase ban đầu của
+chúng tôi và trong tensor2tensor. Llion cũng thửnghiệm các biến thểmô hình mới, phụtrách codebase ban đầu, suy luận hiệu quả
+và trực quan hóa. Lukasz và Aidan đã dành rất nhiều ngày dài đểthiết kếnhiều phần khác nhau và triển khai tensor2tensor, thay
+thếcodebase trước đó của chúng tôi, cải thiện mạnh kết quảvà tăng tốc đáng kểquá trình nghiên cứu.
+†Công trình được thực hiện khi tác giảlàm việc tại Google Brain.
+‡Công trình được thực hiện khi tác giảlàm việc tại Google Research.
+Hội nghịlần thứ31 vềNeural Information Processing Systems (NIPS 2017), Long Beach, CA, USA.
+arXiv:1706.03762v7 [cs.CL] 2 Aug 2023
+1
+Giới thiệu
+Các mạng nơ-ron hồi tiếp, đặc biệt là bộnhớdài-ngắn hạn (long short-term memory) [13] và mạng nơ-ron
+hồi tiếp có cổng (gated recurrent neural networks) [7], đã được xác lập vững chắc như những cách tiếp cận
+trạng thái tốt nhất trong mô hình hóa chuỗi và các bài toán chuyển đổi chuỗi như mô hình hóa ngôn ngữ
+và dịch máy [35, 2, 5]. Từđó, nhiều nỗlực tiếp tục mởrộng giới hạn của các mô hình ngôn ngữhồi tiếp và
+kiến trúc mã hóa-giải mã [38, 24, 15].
+Các mô hình hồi tiếp thường phân rã phép tính theo vịtrí ký hiệu của chuỗi đầu vào và đầu ra. Khi căn
+chỉnh các vịtrí với các bước theo thời gian tính toán, chúng tạo ra một chuỗi trạng thái ẩn ht, như một hàm
+của trạng thái ẩn trước đó ht−1 và đầu vào tại vịtrí t. Bản chất tuần tựvốn có này ngăn cản việc song song
+hóa trong từng ví dụhuấn luyện; điều đó trởnên đặc biệt quan trọng với chuỗi dài, vì các ràng buộc bộ
+nhớgiới hạn khảnăng gom lô qua nhiều ví dụ. Các công trình gần đây đã đạt được những cải thiện đáng kể
+vềhiệu quảtính toán thông qua các thủthuật phân rã [21] và tính toán có điều kiện [32], đồng thời trong
+1
+
+
+===== PAGE 2 =====
+trường hợp sau cũng cải thiện hiệu năng mô hình. Tuy nhiên, ràng buộc nền tảng của tính toán tuần tự
+vẫn còn.
+Các cơ chếchú ý đã trởthành một phần không thểthiếu của các mô hình mô hình hóa chuỗi và chuyển
+đổi chuỗi có sức thuyết phục trong nhiều tác vụ, cho phép mô hình hóa phụthuộc mà không quan tâm đến
+khoảng cách của chúng trong chuỗi đầu vào hoặc đầu ra [2, 19]. Tuy nhiên, ngoại trừmột vài trường hợp
+[27], các cơ chếchú ý như vậy được dùng kết hợp với mạng hồi tiếp.
+Trong công trình này, chúng tôi đềxuất Transformer, một kiến trúc mô hình loại bỏhồi tiếp và thay vào đó
+hoàn toàn dựa vào cơ chếchú ý đểnắm bắt các phụthuộc toàn cục giữa đầu vào và đầu ra. Transformer
+cho phép song song hóa nhiều hơn đáng kểvà có thểđạt trạng thái tốt nhất mới vềchất lượng dịch sau khi
+được huấn luyện chỉtrong mười hai giờtrên tám GPU P100.
+2
+Bối cảnh
+Mục tiêu giảm tính toán tuần tựcũng là nền tảng của Extended Neural GPU [16], ByteNet [18] và ConvS2S
+[9]. Tất cảđều dùng mạng nơ-ron tích chập làm khối xây dựng cơ bản, tính các biểu diễn ẩn song song
+cho mọi vịtrí đầu vào và đầu ra. Trong các mô hình này, sốphép toán cần đểliên hệtín hiệu từhai vịtrí
+đầu vào hoặc đầu ra bất kỳtăng theo khoảng cách giữa các vịtrí: tuyến tính với ConvS2S và logarit với
+ByteNet. Điều này khiến việc học các phụthuộc giữa những vịtrí xa nhau trởnên khó hơn [12]. Trong
+Transformer, sốphép toán này được giảm xuống hằng số, dù phải đánh đổi bằng độphân giải hiệu dụng
+thấp hơn do việc lấy trung bình các vịtrí có trọng sốchú ý; chúng tôi khắc phục hiệu ứng này bằng Chú ý
+đa đầu (Multi-Head Attention), như mô tảởmục 3.2.
+Tựchú ý (self-attention), đôi khi gọi là chú ý nội tại (intra-attention), là một cơ chếchú ý liên hệcác vịtrí
+khác nhau của cùng một chuỗi đểtính biểu diễn của chuỗi đó. Tựchú ý đã được sửdụng thành công trong
+nhiều tác vụ, gồm đọc hiểu, tóm tắt trừu tượng, suy diễn văn bản và học biểu diễn câu độc lập với tác vụ
+[4, 27, 28, 22].
+Các mạng bộnhớđầu-cuối dựa trên cơ chếchú ý hồi tiếp thay vì hồi tiếp căn theo chuỗi, và đã được chứng
+minh có hiệu năng tốt trên các tác vụhỏi đáp ngôn ngữđơn giản và mô hình hóa ngôn ngữ[34].
+Theo hiểu biết tốt nhất của chúng tôi, Transformer là mô hình chuyển đổi đầu tiên hoàn toàn dựa trên tự
+chú ý đểtính biểu diễn của đầu vào và đầu ra mà không dùng RNN căn theo chuỗi hoặc tích chập. Trong
+các mục sau, chúng tôi sẽmô tảTransformer, lý giải động cơ dùng tựchú ý và thảo luận ưu điểm của nó so
+với các mô hình như [17, 18] và [9].
+3
+Kiến trúc mô hình
+Hầu hết các mô hình chuyển đổi chuỗi nơ-ron cạnh tranh đều có cấu trúc mã hóa-giải mã [5, 2, 35]. Ởđây,
+bộmã hóa ánh xạmột chuỗi đầu vào gồm các biểu diễn ký hiệu (x1, . . . , xn) thành một chuỗi biểu diễn liên
+tục z = (z1, . . . , zn). Với z, bộgiải mã sau đó sinh chuỗi đầu ra (y1, . . . , ym) gồm các ký hiệu, mỗi lần một
+phần tử. Tại mỗi bước, mô hình có tính tựhồi quy [10], tiêu thụcác ký hiệu đã sinh trước đó làm đầu vào
+bổsung khi sinh ký hiệu tiếp theo.
+2
+
+
+===== PAGE 3 =====
+Hình 1: Transformer - kiến trúc mô hình.
+Transformer tuân theo kiến trúc tổng quát này, sửdụng các lớp tựchú ý xếp chồng và các lớp kết nối đầy
+đủtheo từng vịtrí cho cảbộmã hóa và bộgiải mã, lần lượt được thểhiện ởnửa trái và nửa phải của Hình
+1.
+3.1
+Các ngăn xếp bộmã hóa và bộgiải mã
+Bộmã hóa: Bộmã hóa gồm một ngăn xếp N = 6 lớp giống hệt nhau. Mỗi lớp có hai lớp con. Lớp con thứ
+nhất là cơ chếtựchú ý đa đầu, và lớp con thứhai là một mạng truyền thẳng kết nối đầy đủđơn giản theo
+từng vịtrí. Chúng tôi dùng một kết nối dư [11] bao quanh từng lớp con, sau đó là chuẩn hóa lớp [1]. Nghĩa
+là, đầu ra của mỗi lớp con là LayerNorm(x + Sublayer(x)), trong đó Sublayer(x) là hàm được chính lớp con
+đó thực hiện. Đểhỗtrợcác kết nối dư này, mọi lớp con trong mô hình, cũng như các lớp embedding, đều
+tạo đầu ra có chiều dmodel = 512.
+Bộgiải mã: Bộgiải mã cũng gồm một ngăn xếp N = 6 lớp giống hệt nhau. Ngoài hai lớp con trong mỗi lớp
+của bộmã hóa, bộgiải mã chèn thêm một lớp con thứba, thực hiện chú ý đa đầu trên đầu ra của ngăn xếp
+bộmã hóa. Tương tựbộmã hóa, chúng tôi dùng kết nối dư bao quanh từng lớp con, sau đó là chuẩn hóa
+lớp. Chúng tôi cũng sửa lớp con tựchú ý trong ngăn xếp bộgiải mã đểngăn các vịtrí chú ý tới những vị
+trí phía sau. Việc che này, kết hợp với thực tếrằng các embedding đầu ra được dịch một vịtrí, bảo đảm dự
+đoán cho vịtrí i chỉcó thểphụthuộc vào các đầu ra đã biết tại những vịtrí nhỏhơn i.
+3.2
+Chú ý
+Một hàm chú ý có thểđược mô tảnhư một ánh xạtừmột truy vấn và một tập các cặp khóa-giá trịtới một
+đầu ra, trong đó truy vấn, các khóa, các giá trịvà đầu ra đều là các vector. Đầu ra được tính như tổng có
+trọng sốcủa các giá trị, trong đó trọng sốgán cho mỗi giá trịđược tính bằng một hàm tương thích giữa truy
+vấn và khóa tương ứng.
+3
+
+
+===== PAGE 4 =====
+Hình 2: (trái) Chú ý tích vô hướng có tỉlệ. (phải) Chú ý đa đầu gồm nhiều lớp chú ý chạy song song.
+3.2.1
+Chú ý tích vô hướng có tỉlệ
+Chúng tôi gọi cơ chếchú ý cụthểcủa mình là “Scaled Dot-Product Attention” (Hình 2). Đầu vào gồm các
+truy vấn và khóa có chiều dk, còn các giá trịcó chiều dv. Chúng tôi tính tích vô hướng của truy vấn với mọi
+khóa, chia từng tích cho √dk, rồi áp dụng hàm softmax đểthu được các trọng sốtrên các giá trị.
+Trong thực tế, chúng tôi tính hàm chú ý đồng thời trên một tập các truy vấn, được đóng gói lại thành ma
+trận Q. Các khóa và giá trịcũng được đóng gói thành các ma trận K và V . Chúng tôi tính ma trận đầu ra
+như sau:
+Attention(Q, K, V ) = softmax
+(QKT
+√dk
+)
+V
+(1)
+Hai hàm chú ý được dùng phổbiến nhất là chú ý cộng (additive attention) [2] và chú ý tích vô hướng, hay
+chú ý nhân (dot-product/multiplicative attention). Chú ý tích vô hướng giống hệt thuật toán của chúng tôi,
+ngoại trừhệsốtỉlệ1/√dk. Chú ý cộng tính hàm tương thích bằng một mạng truyền thẳng với một lớp ẩn
+duy nhất. Dù hai cơ chếcó độphức tạp lý thuyết tương tự, chú ý tích vô hướng nhanh hơn và tiết kiệm bộ
+nhớhơn nhiều trong thực tế, vì có thểđược triển khai bằng mã nhân ma trận đã tối ưu hóa cao.
+Với các giá trịnhỏcủa dk, hai cơ chếhoạt động tương tự; tuy nhiên, với các giá trịlớn hơn của dk, chú ý
+cộng vượt trội hơn chú ý tích vô hướng không có tỉlệ[3]. Chúng tôi nghi ngờrằng với dk lớn, các tích vô
+hướng có độlớn tăng cao, đẩy hàm softmax vào những vùng có gradient cực nhỏ.1 Đểchống lại hiệu ứng
+này, chúng tôi nhân tỉlệcác tích vô hướng với 1/√dk.
+3.2.2
+Chú ý đa đầu
+Thay vì thực hiện một hàm chú ý duy nhất với khóa, giá trịvà truy vấn có chiều dmodel, chúng tôi nhận thấy
+việc chiếu tuyến tính các truy vấn, khóa và giá trịh lần bằng các phép chiếu tuyến tính khác nhau, được
+học, lần lượt sang các chiều dk, dk và dv là có lợi. Trên mỗi phiên bản đã chiếu của các truy vấn, khóa và
+giá trị, chúng tôi thực hiện hàm chú ý song song, tạo ra các giá trịđầu ra có chiều dv. Các giá trịnày được
+nối lại rồi chiếu thêm một lần nữa, tạo thành các giá trịcuối cùng, như minh họa trong Hình 2.
+Chú ý đa đầu cho phép mô hình đồng thời chú ý tới thông tin từcác không gian con biểu diễn khác nhau
+tại các vịtrí khác nhau. Với một đầu chú ý duy nhất, việc lấy trung bình sẽcản trởđiều này.
+1Đểminh họa vì sao tích vô hướng trởnên lớn, giảsửcác thành phần của q và k là các biến ngẫu nhiên độc lập có trung bình 0 và
+phương sai 1. Khi đó tích vô hướng của chúng, q · k = ∑dk
+i=1 qiki, có trung bình 0 và phương sai dk.
+4
+
+
+===== PAGE 5 =====
+MultiHead(Q, K, V ) = Concat(head1, . . . , headh)W O,
+trong đó
+headi = Attention(QW Q
+i , KW K
+i , V W V
+i ).
+Trong đó các phép chiếu là các ma trận tham sốW Q
+i
+∈Rdmodel×dk, W K
+i
+∈Rdmodel×dk, W V
+i
+∈Rdmodel×dv và
+W O ∈Rhdv×dmodel.
+Trong công trình này, chúng tôi dùng h = 8 lớp chú ý song song, hay các đầu chú ý. Với mỗi đầu, chúng tôi
+dùng dk = dv = dmodel/h = 64. Nhờchiều của mỗi đầu được giảm, tổng chi phí tính toán tương tựchú ý một
+đầu với đầy đủchiều.
+3.2.3
+Các ứng dụng của chú ý trong mô hình
+Transformer dùng chú ý đa đầu theo ba cách khác nhau:
+• Trong các lớp “chú ý mã hóa-giải mã”, truy vấn đến từlớp giải mã trước đó, còn các khóa và giá trị
+bộnhớđến từđầu ra của bộmã hóa. Điều này cho phép mọi vịtrí trong bộgiải mã chú ý tới mọi vị
+trí trong chuỗi đầu vào. Nó mô phỏng các cơ chếchú ý mã hóa-giải mã điển hình trong các mô hình
+sequence-to-sequence như [38, 2, 9].
+• Bộmã hóa chứa các lớp tựchú ý. Trong một lớp tựchú ý, tất cảkhóa, giá trịvà truy vấn đều đến từcùng
+một nơi; trong trường hợp này là đầu ra của lớp trước đó trong bộmã hóa. Mỗi vịtrí trong bộmã hóa
+có thểchú ý tới mọi vịtrí trong lớp trước đó của bộmã hóa.
+• Tương tự, các lớp tựchú ý trong bộgiải mã cho phép mỗi vịtrí trong bộgiải mã chú ý tới mọi vịtrí trong
+bộgiải mã cho tới và bao gồm vịtrí đó. Chúng tôi cần ngăn luồng thông tin từbên trái sang các vịtrí
+tương lai trong bộgiải mã đểbảo toàn tính tựhồi quy. Chúng tôi triển khai điều này bên trong chú ý tích
+vô hướng có tỉlệbằng cách che đi, tức đặt bằng −∞, mọi giá trịtrong đầu vào của softmax tương ứng
+với các kết nối không hợp lệ. Xem Hình 2.
+3.3
+Mạng truyền thẳng theo vịtrí
+Ngoài các lớp con chú ý, mỗi lớp trong bộmã hóa và bộgiải mã của chúng tôi chứa một mạng truyền thẳng
+kết nối đầy đủ, được áp dụng cho từng vịtrí một cách riêng biệt và giống hệt nhau. Mạng này gồm hai phép
+biến đổi tuyến tính với một kích hoạt ReLU ởgiữa.
+FFN(x) = max(0, xW1 + b1)W2 + b2
+(2)
+Dù các phép biến đổi tuyến tính giống nhau trên các vịtrí khác nhau, chúng dùng các tham sốkhác nhau
+từlớp này sang lớp khác. Một cách mô tảkhác là coi chúng như hai phép tích chập với kích thước kernel
+bằng 1.
+Chiều của đầu vào và đầu ra là dmodel = 512, và lớp bên trong có chiều dff = 2048.
+3.4
+Embedding và Softmax
+Tương tựcác mô hình chuyển đổi chuỗi khác, chúng tôi dùng các embedding được học đểchuyển token
+đầu vào và token đầu ra thành các vector có chiều dmodel. Chúng tôi cũng dùng phép biến đổi tuyến tính
+được học thông thường và hàm softmax đểchuyển đầu ra bộgiải mã thành xác suất token tiếp theo được
+dựđoán. Trong mô hình của chúng tôi, cùng một ma trận trọng sốđược chia sẻgiữa hai lớp embedding và
+phép biến đổi tuyến tính trước softmax, tương tự[30]. Trong các lớp embedding, chúng tôi nhân các trọng
+sốđó với √dmodel.
+5
+
+
+===== PAGE 6 =====
+3.5
+Mã hóa vịtrí
+Vì mô hình của chúng tôi không chứa hồi tiếp cũng như tích chập, đểmô hình sửdụng được thứtựcủa
+chuỗi, chúng tôi phải đưa vào một sốthông tin vềvịtrí tương đối hoặc tuyệt đối của các token trong chuỗi.
+Vì vậy, chúng tôi cộng các “mã hóa vịtrí” (positional encodings) vào các embedding đầu vào ởđáy của các
+ngăn xếp bộmã hóa và bộgiải mã. Các mã hóa vịtrí có cùng chiều dmodel với các embedding, đểhai thành
+phần có thểđược cộng lại. Có nhiều lựa chọn mã hóa vịtrí, cảđược học lẫn cốđịnh [9].
+Trong công trình này, chúng tôi dùng các hàm sin và cos với các tần sốkhác nhau:
+PE(pos,2i) = sin(pos/100002i/dmodel),
+PE(pos,2i+1) = cos(pos/100002i/dmodel).
+Trong đó pos là vịtrí và i là chiều. Nghĩa là mỗi chiều của mã hóa vịtrí tương ứng với một hình sin. Các
+bước sóng tạo thành một cấp sốnhân từ2π tới 10000 · 2π. Chúng tôi chọn hàm này vì giảthuyết rằng nó sẽ
+cho phép mô hình dễdàng học cách chú ý theo vịtrí tương đối, bởi với mọi độlệch cốđịnh k, PEpos+k có
+thểđược biểu diễn như một hàm tuyến tính của PEpos.
+Chúng tôi cũng thửnghiệm dùng embedding vịtrí được học [9] thay thếvà nhận thấy hai phiên bản tạo ra
+kết quảgần như giống hệt nhau (xem Bảng 3, hàng (E)). Chúng tôi chọn phiên bản hình sin vì nó có thểcho
+phép mô hình ngoại suy tới những độdài chuỗi lớn hơn các độdài gặp trong huấn luyện.
+4
+Vì sao dùng tựchú ý
+Trong mục này, chúng tôi so sánh nhiều khía cạnh của các lớp tựchú ý với các lớp hồi tiếp và tích chập
+thường được dùng đểánh xạmột chuỗi có độdài biến thiên gồm các biểu diễn ký hiệu (x1, . . . , xn) sang
+một chuỗi khác cùng độdài (z1, . . . , zn), với xi, zi ∈Rd, chẳng hạn như một lớp ẩn trong bộmã hóa hoặc bộ
+giải mã chuyển đổi chuỗi điển hình. Đểlý giải việc sửdụng tựchú ý, chúng tôi xét ba tiêu chí mong muốn.
+Tiêu chí thứnhất là tổng độphức tạp tính toán trên mỗi lớp. Tiêu chí thứhai là lượng tính toán có thểđược
+song song hóa, được đo bằng sốphép toán tuần tựtối thiểu cần thiết.
+Tiêu chí thứba là độdài đường đi giữa các phụthuộc tầm xa trong mạng. Học các phụthuộc tầm xa là một
+thách thức then chốt trong nhiều tác vụchuyển đổi chuỗi. Một yếu tốquan trọng ảnh hưởng tới khảnăng
+học những phụthuộc như vậy là độdài của các đường đi mà tín hiệu tiến và lùi phải đi qua trong mạng.
+Các đường đi giữa mọi tổhợp vịtrí trong chuỗi đầu vào và đầu ra càng ngắn thì càng dễhọc phụthuộc
+tầm xa [12]. Vì thế, chúng tôi cũng so sánh độdài đường đi lớn nhất giữa hai vịtrí đầu vào và đầu ra bất
+kỳtrong các mạng gồm những kiểu lớp khác nhau.
+Bảng 1: Độdài đường đi lớn nhất, độphức tạp mỗi lớp và sốphép toán tuần tựtối thiểu cho các kiểu lớp khác nhau. n
+là độdài chuỗi, d là chiều biểu diễn, k là kích thước kernel của tích chập và r là kích thước vùng lân cận trong tựchú
+ý bịgiới hạn.
+Kiểu lớp
+Độphức tạp mỗi lớp
+Phép toán tuần tự
+Độdài đường đi lớn nhất
+Self-Attention
+O(n2 · d)
+O(1)
+O(1)
+Recurrent
+O(n · d2)
+O(n)
+O(n)
+Convolutional
+O(k · n · d2)
+O(1)
+O(logk(n))
+Self-Attention (restricted)
+O(r · n · d)
+O(1)
+O(n/r)
+Như nêu trong Bảng 1, một lớp tựchú ý kết nối mọi vịtrí bằng một sốhằng các phép toán được thực thi
+tuần tự, trong khi một lớp hồi tiếp đòi hỏi O(n) phép toán tuần tự. Vềđộphức tạp tính toán, các lớp tựchú
+ý nhanh hơn các lớp hồi tiếp khi độdài chuỗi n nhỏhơn chiều biểu diễn d; đây thường là trường hợp với
+các biểu diễn câu được dùng bởi các mô hình trạng thái tốt nhất trong dịch máy, như word-piece [38] và
+byte-pair [31]. Đểcải thiện hiệu năng tính toán cho các tác vụliên quan tới chuỗi rất dài, tựchú ý có thể
+bịgiới hạn đểchỉxét một vùng lân cận kích thước r trong chuỗi đầu vào, tâm tại vịtrí đầu ra tương ứng.
+6
+
+
+===== PAGE 7 =====
+Điều này sẽtăng độdài đường đi lớn nhất lên O(n/r). Chúng tôi dựđịnh khảo sát cách tiếp cận này sâu
+hơn trong công việc tương lai.
+Một lớp tích chập đơn với độrộng kernel k < n không kết nối mọi cặp vịtrí đầu vào và đầu ra. Đểlàm được
+điều này cần một ngăn xếp O(n/k) lớp tích chập trong trường hợp kernel liên tiếp, hoặc O(logk(n)) trong
+trường hợp tích chập giãn nở[18], làm tăng độdài của các đường đi dài nhất giữa hai vịtrí bất kỳtrong
+mạng. Các lớp tích chập nhìn chung đắt hơn các lớp hồi tiếp, với hệsốk. Tuy nhiên, tích chập tách được
+(separable convolutions) [6] làm giảm đáng kểđộphức tạp xuống O(k · n · d + n · d2). Ngay cảvới k = n, độ
+phức tạp của một tích chập tách được vẫn bằng tổhợp của một lớp tựchú ý và một lớp truyền thẳng theo
+vịtrí, là cách tiếp cận mà chúng tôi dùng trong mô hình.
+Như một lợi ích phụ, tựchú ý có thểtạo ra các mô hình dễdiễn giải hơn. Chúng tôi kiểm tra các phân phối
+chú ý từcác mô hình của mình và trình bày, thảo luận các ví dụởphụlục. Không chỉtừng đầu chú ý học
+rõ ràng các tác vụkhác nhau, nhiều đầu còn dường như thểhiện hành vi liên quan tới cấu trúc cú pháp và
+ngữnghĩa của câu.
+5
+Huấn luyện
+Mục này mô tảchếđộhuấn luyện cho các mô hình của chúng tôi.
+5.1
+Dữliệu huấn luyện và gom lô
+Chúng tôi huấn luyện trên bộdữliệu Anh-Đức WMT 2014 chuẩn gồm khoảng 4.5 triệu cặp câu. Các câu
+được mã hóa bằng byte-pair encoding [3], với một từvựng nguồn-đích dùng chung khoảng 37000 token.
+Với Anh-Pháp, chúng tôi dùng bộdữliệu Anh-Pháp WMT 2014 lớn hơn đáng kể, gồm 36M câu, và tách token
+thành một từvựng word-piece 32000 [38]. Các cặp câu được gom thành lô theo độdài chuỗi xấp xỉ. Mỗi lô
+huấn luyện chứa một tập cặp câu gồm khoảng 25000 token nguồn và 25000 token đích.
+5.2
+Phần cứng và lịch huấn luyện
+Chúng tôi huấn luyện các mô hình trên một máy với 8 GPU NVIDIA P100. Với các mô hình cơ sởdùng các
+siêu tham sốđược mô tảxuyên suốt bài báo, mỗi bước huấn luyện mất khoảng 0.4 giây. Chúng tôi huấn
+luyện các mô hình cơ sởtổng cộng 100000 bước, tương đương 12 giờ. Với các mô hình lớn, được mô tảở
+dòng cuối Bảng 3, thời gian mỗi bước là 1.0 giây. Các mô hình lớn được huấn luyện trong 300000 bước (3.5
+ngày).
+5.3
+Bộtối ưu
+Chúng tôi dùng bộtối ưu Adam [20] với β1 = 0.9, β2 = 0.98 và ϵ = 10−9. Chúng tôi thay đổi tốc độhọc trong
+quá trình huấn luyện theo công thức:
+lrate = d−0.5
+model · min(step_num−0.5, step_num · warmup_steps−1.5)
+(3)
+Công thức này tương ứng với việc tăng tốc độhọc tuyến tính trong các bước huấn luyện warmup_steps đầu
+tiên, rồi sau đó giảm tỉlệthuận với nghịch đảo căn bậc hai của sốbước. Chúng tôi dùng warmup_steps =
+4000.
+5.4
+Chính quy hóa
+Chúng tôi dùng ba kiểu chính quy hóa trong huấn luyện:
+7
+
+
+===== PAGE 8 =====
+Residual Dropout Chúng tôi áp dụng dropout [33] vào đầu ra của mỗi lớp con, trước khi nó được cộng với
+đầu vào của lớp con và được chuẩn hóa. Ngoài ra, chúng tôi áp dụng dropout vào tổng của embedding và
+mã hóa vịtrí trong cảngăn xếp bộmã hóa và bộgiải mã. Với mô hình cơ sở, chúng tôi dùng tỉlệPdrop = 0.1.
+Label Smoothing Trong huấn luyện, chúng tôi dùng làm mượt nhãn với giá trịϵls = 0.1 [36]. Điều này làm
+giảm perplexity, vì mô hình học cách ít chắc chắn hơn, nhưng cải thiện độchính xác và điểm BLEU.
+6
+Kết quả
+6.1
+Dịch máy
+Trên tác vụdịch Anh-sang-Đức WMT 2014, mô hình Transformer lớn (Transformer (big) trong Bảng 2) vượt
+các mô hình tốt nhất đã được báo cáo trước đây, kểcảmô hình tổhợp, hơn 2.0 BLEU, thiết lập điểm BLEU
+trạng thái tốt nhất mới là 28.4. Cấu hình của mô hình này được liệt kê ởdòng cuối Bảng 3. Huấn luyện mất
+3.5 ngày trên 8 GPU P100. Ngay cảmô hình cơ sởcủa chúng tôi cũng vượt mọi mô hình và tổhợp đã công
+bốtrước đó, với chi phí huấn luyện chỉbằng một phần nhỏcủa bất kỳmô hình cạnh tranh nào.
+Trên tác vụdịch Anh-sang-Pháp WMT 2014, mô hình lớn của chúng tôi đạt điểm BLEU 41.0, vượt mọi mô
+hình đơn đã công bốtrước đó, với chi phí huấn luyện thấp hơn 1/4 so với mô hình trạng thái tốt nhất trước
+đó. Mô hình Transformer (big) được huấn luyện cho Anh-sang-Pháp dùng tỉlệdropout Pdrop = 0.1, thay vì
+0.3.
+Với các mô hình cơ sở, chúng tôi dùng một mô hình đơn thu được bằng cách lấy trung bình 5 checkpoint
+cuối cùng, được ghi ởkhoảng cách 10 phút. Với các mô hình lớn, chúng tôi lấy trung bình 20 checkpoint
+cuối cùng. Chúng tôi dùng tìm kiếm chùm (beam search) với kích thước chùm 4 và hệsốphạt độdài α = 0.6
+[38]. Các siêu tham sốnày được chọn sau khi thửnghiệm trên tập phát triển. Chúng tôi đặt độdài đầu ra
+tối đa trong suy luận bằng độdài đầu vào + 50, nhưng kết thúc sớm khi có thể[38].
+Bảng 2 tóm tắt kết quảcủa chúng tôi và so sánh chất lượng dịch cũng như chi phí huấn luyện với các kiến
+trúc mô hình khác trong tài liệu. Chúng tôi ước lượng sốphép toán dấu phẩy động dùng đểhuấn luyện
+một mô hình bằng cách nhân thời gian huấn luyện, sốGPU dùng và một ước lượng vềnăng lực dấu phẩy
+động chính xác đơn duy trì được của từng GPU.2
+Bảng 2: Transformer đạt điểm BLEU tốt hơn các mô hình trạng thái tốt nhất trước đó trên các bài kiểm tra newstest2014
+Anh-sang-Đức và Anh-sang-Pháp, với chi phí huấn luyện chỉbằng một phần nhỏ.
+Mô hình
+BLEU
+Chi phí huấn luyện (FLOPs)
+EN-DE
+EN-FR
+EN-DE
+EN-FR
+ByteNet [18]
+23.75
+Deep-Att + PosUnk [39]
+39.2
+1.0 · 1020
+GNMT + RL [38]
+24.6
+39.92
+2.3 · 1019
+1.4 · 1020
+ConvS2S [9]
+25.16
+40.46
+9.6 · 1018
+1.5 · 1020
+MoE [32]
+26.03
+40.56
+2.0 · 1019
+1.2 · 1020
+Deep-Att + PosUnk Ensemble [39]
+40.4
+8.0 · 1020
+GNMT + RL Ensemble [38]
+26.30
+41.16
+1.8 · 1020
+1.1 · 1021
+ConvS2S Ensemble [9]
+26.36
+41.29
+7.7 · 1019
+1.2 · 1021
+Transformer (base model)
+27.3
+38.1
+3.3 · 1018
+Transformer (big)
+28.4
+41.8
+2.3 · 1019
+6.2
+Các biến thểmô hình
+Đểđánh giá tầm quan trọng của các thành phần khác nhau trong Transformer, chúng tôi thay đổi mô hình
+cơ sởtheo nhiều cách, đo mức thay đổi hiệu năng trên dịch Anh-sang-Đức ởtập phát triển newstest2013.
+Chúng tôi dùng tìm kiếm chùm như mô tảởmục trước, nhưng không lấy trung bình checkpoint. Chúng tôi
+trình bày các kết quảnày trong Bảng 3.
+2Chúng tôi dùng các giá trị2.8, 3.7, 6.0 và 9.5 TFLOPS lần lượt cho K80, K40, M40 và P100.
+8
+
+
+===== PAGE 9 =====
+Trong các hàng (A) của Bảng 3, chúng tôi thay đổi sốđầu chú ý và chiều khóa/giá trịchú ý, trong khi giữ
+lượng tính toán không đổi, như mô tảởMục 3.2.2. Trong khi chú ý một đầu kém hơn thiết lập tốt nhất 0.9
+BLEU, chất lượng cũng giảm khi có quá nhiều đầu.
+Trong các hàng (B) của Bảng 3, chúng tôi quan sát thấy rằng giảm kích thước khóa chú ý dk làm tổn hại
+chất lượng mô hình. Điều này gợi ý rằng việc xác định mức tương thích không dễ, và một hàm tương thích
+tinh vi hơn tích vô hướng có thểcó lợi. Chúng tôi cũng quan sát thấy ởcác hàng (C) và (D) rằng, đúng như
+kỳvọng, mô hình lớn hơn cho kết quảtốt hơn, và dropout rất hữu ích trong việc tránh quá khớp. Ởhàng
+(E), chúng tôi thay mã hóa vịtrí hình sin bằng embedding vịtrí được học [9], và quan sát kết quảgần như
+giống hệt mô hình cơ sở.
+Bảng 3: Các biến thểcủa kiến trúc Transformer. Các giá trịkhông liệt kê giống với mô hình cơ sở. Mọi chỉsốđược đo
+trên tập phát triển dịch Anh-sang-Đức, newstest2013. Perplexity liệt kê là theo wordpiece, theo byte-pair encoding của
+chúng tôi, và không nên so sánh với perplexity theo từ.
+N
+dmodel
+dff
+h
+dk
+dv
+Pdrop
+ϵls
+bước huấn luyện
+PPL (dev)
+BLEU (dev)
+tham số×106
+base
+6
+512
+2048
+8
+64
+64
+0.1
+0.1
+100K
+4.92
+25.8
+65
+(A)
+1
+512
+512
+5.29
+24.9
+4
+128
+128
+5.00
+25.5
+16
+32
+32
+4.91
+25.8
+32
+16
+16
+5.01
+25.4
+(B)
+16
+5.16
+25.1
+58
+32
+5.01
+25.4
+60
+(C)
+2
+6.11
+23.7
+36
+4
+5.19
+25.3
+50
+8
+4.88
+25.5
+80
+256
+32
+32
+5.75
+24.5
+28
+1024
+128
+128
+4.66
+26.0
+168
+1024
+5.12
+25.4
+53
+4096
+4.75
+26.2
+90
+(D)
+0.0
+5.77
+24.6
+0.2
+4.95
+25.5
+0.0
+4.67
+25.3
+0.2
+5.47
+25.7
+(E)
+embedding vịtrí thay cho các hàm hình sin
+4.92
+25.7
+big
+6
+1024
+4096
+16
+0.3
+300K
+4.33
+26.4
+213
+6.3
+Phân tích cú pháp thành phần tiếng Anh
+Đểđánh giá liệu Transformer có thểkhái quát sang các tác vụkhác hay không, chúng tôi thực hiện các thí
+nghiệm trên phân tích cú pháp thành phần tiếng Anh. Tác vụnày có những thách thức riêng: đầu ra chịu
+các ràng buộc cấu trúc mạnh và dài hơn đầu vào đáng kể. Hơn nữa, các mô hình sequence-to-sequence
+dựa trên RNN chưa thểđạt kết quảtrạng thái tốt nhất trong các chếđộdữliệu nhỏ[37].
+Chúng tôi huấn luyện một Transformer 4 lớp với dmodel = 1024 trên phần Wall Street Journal (WSJ) của
+Penn Treebank [25], gồm khoảng 40K câu huấn luyện. Chúng tôi cũng huấn luyện nó trong một thiết lập
+bán giám sát, sửdụng các kho ngữliệu high-confidence và BerkleyParser lớn hơn với khoảng 17M câu [37].
+Chúng tôi dùng từvựng 16K token cho thiết lập chỉWSJ, và từvựng 32K token cho thiết lập bán giám sát.
+Chúng tôi chỉthực hiện một sốnhỏthí nghiệm đểchọn dropout, cảattention dropout và residual dropout
+(mục 5.4), tốc độhọc và kích thước chùm trên tập phát triển Section 22; mọi tham sốkhác được giữnguyên
+từmô hình dịch cơ sởAnh-sang-Đức. Khi suy luận, chúng tôi tăng độdài đầu ra tối đa lên độdài đầu vào +
+300. Chúng tôi dùng kích thước chùm 21 và α = 0.3 cho cảthiết lập chỉWSJ và bán giám sát.
+Kết quảcủa chúng tôi trong Bảng 4 cho thấy, dù thiếu tinh chỉnh riêng cho tác vụ, mô hình vẫn hoạt động
+tốt một cách đáng ngạc nhiên, cho kết quảtốt hơn mọi mô hình đã báo cáo trước đó, ngoại trừRecurrent
+Neural Network Grammar [8].
+Trái với các mô hình sequence-to-sequence dựa trên RNN [37], Transformer vượt BerkeleyParser [29] ngay
+cảkhi chỉhuấn luyện trên tập huấn luyện WSJ gồm 40K câu.
+9
+
+
+===== PAGE 10 =====
+Bảng 4: Transformer khái quát tốt sang phân tích cú pháp thành phần tiếng Anh. Kết quảđược đo trên Section 23 của
+WSJ.
+Parser
+Huấn luyện
+WSJ 23 F1
+Vinyals & Kaiser et al. (2014) [37]
+chỉWSJ, phân biệt
+88.3
+Petrov et al. (2006) [29]
+chỉWSJ, phân biệt
+90.4
+Zhu et al. (2013) [40]
+chỉWSJ, phân biệt
+90.4
+Dyer et al. (2016) [8]
+chỉWSJ, phân biệt
+91.7
+Transformer (4 layers)
+chỉWSJ, phân biệt
+91.3
+Zhu et al. (2013) [40]
+bán giám sát
+91.3
+Huang & Harper (2009) [14]
+bán giám sát
+91.3
+McClosky et al. (2006) [26]
+bán giám sát
+92.1
+Vinyals & Kaiser et al. (2014) [37]
+bán giám sát
+92.1
+Transformer (4 layers)
+bán giám sát
+92.7
+Luong et al. (2015) [23]
+đa tác vụ
+93.0
+Dyer et al. (2016) [8]
+sinh
+93.3
+7
+Kết luận
+Trong công trình này, chúng tôi trình bày Transformer, mô hình chuyển đổi chuỗi đầu tiên dựa hoàn toàn
+trên chú ý, thay thếcác lớp hồi tiếp vốn được dùng phổbiến nhất trong kiến trúc mã hóa-giải mã bằng tự
+chú ý đa đầu.
+Với các tác vụdịch, Transformer có thểđược huấn luyện nhanh hơn đáng kểso với các kiến trúc dựa trên
+lớp hồi tiếp hoặc lớp tích chập. Trên cảhai tác vụdịch WMT 2014 Anh-sang-Đức và WMT 2014 Anh-sang-
+Pháp, chúng tôi đạt trạng thái tốt nhất mới. Ởtác vụđầu, mô hình tốt nhất của chúng tôi vượt ngay cảmọi
+mô hình tổhợp đã báo cáo trước đó.
+Chúng tôi hào hứng vềtương lai của các mô hình dựa trên chú ý và dựđịnh áp dụng chúng cho các tác vụ
+khác. Chúng tôi dựđịnh mởrộng Transformer sang các bài toán liên quan tới các phương thức đầu vào và
+đầu ra khác ngoài văn bản, đồng thời khảo sát các cơ chếchú ý cục bộ, bịgiới hạn đểxửlý hiệu quảcác
+đầu vào và đầu ra lớn như ảnh, âm thanh và video. Làm cho quá trình sinh ít tuần tựhơn cũng là một mục
+tiêu nghiên cứu khác của chúng tôi.
+Mã nguồn chúng tôi dùng đểhuấn luyện và đánh giá các mô hình hiện có tại https://github.com/
+tensorflow/tensor2tensor.
+Lời cảm ơn Chúng tôi biết ơn Nal Kalchbrenner và Stephan Gouws vì những bình luận, sửa chữa và nguồn
+cảm hứng hữu ích của họ.
+Tài liệu tham khảo
+[1] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton. Layer normalization. arXiv preprint arXiv:1607.06450,
+2016.
+[2] Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural machine translation by jointly learn-
+ing to align and translate. CoRR, abs/1409.0473, 2014.
+[3] Denny Britz, Anna Goldie, Minh-Thang Luong, and Quoc V. Le. Massive exploration of neural machine
+translation architectures. CoRR, abs/1703.03906, 2017.
+[4] Jianpeng Cheng, Li Dong, and Mirella Lapata. Long short-term memory-networks for machine reading.
+arXiv preprint arXiv:1601.06733, 2016.
+[5] Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Fethi Bougares, Holger Schwenk, and Yoshua
+Bengio. Learning phrase representations using rnn encoder-decoder for statistical machine transla-
+tion. CoRR, abs/1406.1078, 2014.
+10
+
+
+===== PAGE 11 =====
+[6] Francois Chollet. Xception: Deep learning with depthwise separable convolutions. arXiv preprint
+arXiv:1610.02357, 2016.
+[7] Junyoung Chung, Çaglar Gülçehre, Kyunghyun Cho, and Yoshua Bengio. Empirical evaluation of gated
+recurrent neural networks on sequence modeling. CoRR, abs/1412.3555, 2014.
+[8] Chris Dyer, Adhiguna Kuncoro, Miguel Ballesteros, and Noah A. Smith. Recurrent neural network
+grammars. In Proc. of NAACL, 2016.
+[9] Jonas Gehring, Michael Auli, David Grangier, Denis Yarats, and Yann N. Dauphin. Convolutional se-
+quence to sequence learning. arXiv preprint arXiv:1705.03122v2, 2017.
+[10] Alex Graves. Generating sequences with recurrent neural networks. arXiv preprint arXiv:1308.0850,
+2013.
+[11] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for image recognition.
+In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 770-778,
+2016.
+[12] Sepp Hochreiter, Yoshua Bengio, Paolo Frasconi, and Jürgen Schmidhuber. Gradient flow in recurrent
+nets: the difficulty of learning long-term dependencies, 2001.
+[13] Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory. Neural computation, 9(8):1735-
+1780, 1997.
+[14] Zhongqiang Huang and Mary Harper. Self-training PCFG grammars with latent annotations across lan-
+guages. In Proceedings of the 2009 Conference on Empirical Methods in Natural Language Processing,
+pages 832-841. ACL, August 2009.
+[15] Rafal Jozefowicz, Oriol Vinyals, Mike Schuster, Noam Shazeer, and Yonghui Wu. Exploring the limits
+of language modeling. arXiv preprint arXiv:1602.02410, 2016.
+[16] Łukasz Kaiser and Samy Bengio. Can active memory replace attention? In Advances in Neural Infor-
+mation Processing Systems, (NIPS), 2016.
+[17] Łukasz Kaiser and Ilya Sutskever. Neural GPUs learn algorithms. In International Conference on
+Learning Representations (ICLR), 2016.
+[18] Nal Kalchbrenner, Lasse Espeholt, Karen Simonyan, Aaron van den Oord, Alex Graves, and Koray
+Kavukcuoglu. Neural machine translation in linear time. arXiv preprint arXiv:1610.10099v2, 2017.
+[19] Yoon Kim, Carl Denton, Luong Hoang, and Alexander M. Rush. Structured attention networks. In
+International Conference on Learning Representations, 2017.
+[20] Diederik Kingma and Jimmy Ba. Adam: A method for stochastic optimization. In ICLR, 2015.
+[21] Oleksii Kuchaiev and Boris Ginsburg. Factorization tricks for LSTM networks. arXiv preprint arXiv:1703.10722,
+2017.
+[22] Zhouhan Lin, Minwei Feng, Cicero Nogueira dos Santos, Mo Yu, Bing Xiang, Bowen Zhou, and Yoshua
+Bengio. A structured self-attentive sentence embedding. arXiv preprint arXiv:1703.03130, 2017.
+[23] Minh-Thang Luong, Quoc V. Le, Ilya Sutskever, Oriol Vinyals, and Lukasz Kaiser. Multi-task sequence
+to sequence learning. arXiv preprint arXiv:1511.06114, 2015.
+[24] Minh-Thang Luong, Hieu Pham, and Christopher D Manning. Effective approaches to attention-based
+neural machine translation. arXiv preprint arXiv:1508.04025, 2015.
+[25] Mitchell P Marcus, Mary Ann Marcinkiewicz, and Beatrice Santorini. Building a large annotated cor-
+pus of english: The penn treebank. Computational linguistics, 19(2):313-330, 1993.
+[26] David McClosky, Eugene Charniak, and Mark Johnson. Effective self-training for parsing. In Proceed-
+ings of the Human Language Technology Conference of the NAACL, Main Conference, pages 152-159.
+ACL, June 2006.
+11
+
+
+===== PAGE 12 =====
+[27] Ankur Parikh, Oscar Täckström, Dipanjan Das, and Jakob Uszkoreit. A decomposable attention model.
+In Empirical Methods in Natural Language Processing, 2016.
+[28] Romain Paulus, Caiming Xiong, and Richard Socher. A deep reinforced model for abstractive summa-
+rization. arXiv preprint arXiv:1705.04304, 2017.
+[29] Slav Petrov, Leon Barrett, Romain Thibaux, and Dan Klein. Learning accurate, compact, and inter-
+pretable tree annotation. In Proceedings of the 21st International Conference on Computational Lin-
+guistics and 44th Annual Meeting of the ACL, pages 433-440. ACL, July 2006.
+[30] Ofir Press and Lior Wolf. Using the output embedding to improve language models. arXiv preprint
+arXiv:1608.05859, 2016.
+[31] Rico Sennrich, Barry Haddow, and Alexandra Birch. Neural machine translation of rare words with
+subword units. arXiv preprint arXiv:1508.07909, 2015.
+[32] Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le, Geoffrey Hinton, and
+Jeff Dean. Outrageously large neural networks: the sparsely-gated mixture-of-experts layer. arXiv
+preprint arXiv:1701.06538, 2017.
+[33] Nitish Srivastava, Geoffrey E Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan Salakhutdinov. Dropout:
+a simple way to prevent neural networks from overfitting. Journal of Machine Learning Research,
+15(1):1929-1958, 2014.
+[34] Sainbayar Sukhbaatar, Arthur Szlam, Jason Weston, and Rob Fergus. End-to-end memory networks.
+In C. Cortes, N. D. Lawrence, D. D. Lee, M. Sugiyama, and R. Garnett, editors, Advances in Neural Infor-
+mation Processing Systems 28, pages 2440-2448. Curran Associates, Inc., 2015.
+[35] Ilya Sutskever, Oriol Vinyals, and Quoc VV Le. Sequence to sequence learning with neural networks.
+In Advances in Neural Information Processing Systems, pages 3104-3112, 2014.
+[36] Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jonathon Shlens, and Zbigniew Wojna. Rethinking
+the inception architecture for computer vision. CoRR, abs/1512.00567, 2015.
+[37] Vinyals & Kaiser, Koo, Petrov, Sutskever, and Hinton. Grammar as a foreign language. In Advances in
+Neural Information Processing Systems, 2015.
+[38] Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc V Le, Mohammad Norouzi, Wolfgang Macherey, Maxim
+Krikun, Yuan Cao, Qin Gao, Klaus Macherey, et al. Google’s neural machine translation system: Bridg-
+ing the gap between human and machine translation. arXiv preprint arXiv:1609.08144, 2016.
+[39] Jie Zhou, Ying Cao, Xuguang Wang, Peng Li, and Wei Xu. Deep recurrent models with fast-forward
+connections for neural machine translation. CoRR, abs/1606.04199, 2016.
+[40] Muhua Zhu, Yue Zhang, Wenliang Chen, Min Zhang, and Jingbo Zhu. Fast and accurate shift-reduce
+constituent parsing. In Proceedings of the 51st Annual Meeting of the ACL (Volume 1: Long Papers),
+pages 434-443. ACL, August 2013.
+12
+
+
+===== PAGE 13 =====
+Trực quan hóa chú ý
+Hình 3: Một ví dụvềcơ chếchú ý theo dõi các phụthuộc khoảng cách dài trong tựchú ý của bộmã hóa ởlớp 5 trên 6.
+Nhiều đầu chú ý tập trung vào một phụthuộc xa của động từ“making”, hoàn tất cụm “making...more difficult”. Ởđây
+chỉhiển thịcác chú ý cho từ“making”. Các màu khác nhau biểu thịcác đầu khác nhau. Nên xem bằng màu.
+13
+
+
+===== PAGE 14 =====
+Hình 4: Hai đầu chú ý, cũng ởlớp 5 trên 6, dường như tham gia vào giải quyết hồi chỉ. Trên: toàn bộchú ý của đầu 5.
+Dưới: các chú ý được tách riêng chỉtừtừ“its” cho các đầu chú ý 5 và 6. Lưu ý rằng các chú ý rất sắc nét đối với từnày.
+14
+
+
+===== PAGE 15 =====
+Hình 5: Nhiều đầu chú ý biểu hiện hành vi dường như liên quan tới cấu trúc câu. Chúng tôi đưa ra hai ví dụnhư vậy
+ởtrên, từhai đầu khác nhau của tựchú ý bộmã hóa tại lớp 5 trên 6. Các đầu rõ ràng đã học cách thực hiện những tác
+vụkhác nhau.
+15

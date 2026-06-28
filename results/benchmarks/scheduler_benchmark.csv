@@ -1,0 +1,5 @@
+strategy,throughput_per_hour,completion_rate,survival_rate,first_try_rate,p50_latency,p95_latency,cooldowns,sim_duration_h
+round_robin,490.95,1.0,0.2,0.9023,6.83,8.63,39,0.73
+cooldown_aware,420.81,1.0,0.2,0.8911,6.96,8.59,44,0.86
+lru,473.39,1.0,0.2,0.9023,7.1,8.69,39,0.76
+adaptive,384.56,1.0,0.2,0.8889,6.8,8.53,45,0.94

@@ -1,0 +1,104 @@
+{
+  "title": "Web AI Translator",
+  "uid": "wat-overview",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "10s",
+  "time": { "from": "now-1h", "to": "now" },
+  "tags": ["wat", "datn"],
+  "panels": [
+    {
+      "id": 1,
+      "type": "stat",
+      "title": "Jobs in progress",
+      "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 },
+      "targets": [{ "expr": "sum(wat_jobs_in_progress)" }]
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "Completed (1h)",
+      "gridPos": { "x": 6, "y": 0, "w": 6, "h": 4 },
+      "targets": [{ "expr": "sum(increase(wat_jobs_completed_total[1h]))" }]
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Bot blocks (1h)",
+      "gridPos": { "x": 12, "y": 0, "w": 6, "h": 4 },
+      "targets": [{ "expr": "sum(increase(wat_bot_block_total[1h]))" }],
+      "fieldConfig": { "defaults": { "thresholds": { "steps": [
+        { "color": "green", "value": null },
+        { "color": "orange", "value": 1 },
+        { "color": "red", "value": 5 }
+      ] } } }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Accounts free",
+      "gridPos": { "x": 18, "y": 0, "w": 6, "h": 4 },
+      "targets": [{ "expr": "wat_account_pool_state{state=\"free\"}" }]
+    },
+    {
+      "id": 10,
+      "type": "timeseries",
+      "title": "HTTP request rate",
+      "gridPos": { "x": 0, "y": 4, "w": 12, "h": 8 },
+      "targets": [{
+        "expr": "sum by (route) (rate(wat_http_requests_total[1m]))",
+        "legendFormat": "{{route}}"
+      }]
+    },
+    {
+      "id": 11,
+      "type": "timeseries",
+      "title": "HTTP p95 latency",
+      "gridPos": { "x": 12, "y": 4, "w": 12, "h": 8 },
+      "targets": [{
+        "expr": "histogram_quantile(0.95, sum by (le, route) (rate(wat_http_request_duration_seconds_bucket[5m])))",
+        "legendFormat": "p95 {{route}}"
+      }]
+    },
+    {
+      "id": 20,
+      "type": "timeseries",
+      "title": "Chunk translation rate",
+      "gridPos": { "x": 0, "y": 12, "w": 12, "h": 8 },
+      "targets": [{
+        "expr": "sum by (source_type) (rate(wat_chunks_translated_total[1m]))",
+        "legendFormat": "{{source_type}}"
+      }]
+    },
+    {
+      "id": 21,
+      "type": "timeseries",
+      "title": "Job duration (p50/p95)",
+      "gridPos": { "x": 12, "y": 12, "w": 12, "h": 8 },
+      "targets": [
+        { "expr": "histogram_quantile(0.5, sum by (le, source_type) (rate(wat_job_duration_seconds_bucket[10m])))", "legendFormat": "p50 {{source_type}}" },
+        { "expr": "histogram_quantile(0.95, sum by (le, source_type) (rate(wat_job_duration_seconds_bucket[10m])))", "legendFormat": "p95 {{source_type}}" }
+      ]
+    },
+    {
+      "id": 30,
+      "type": "timeseries",
+      "title": "Account pool state",
+      "gridPos": { "x": 0, "y": 20, "w": 12, "h": 8 },
+      "targets": [{
+        "expr": "wat_account_pool_state",
+        "legendFormat": "{{state}}"
+      }]
+    },
+    {
+      "id": 31,
+      "type": "timeseries",
+      "title": "Cache hit ratio",
+      "gridPos": { "x": 12, "y": 20, "w": 12, "h": 8 },
+      "targets": [{
+        "expr": "sum(rate(wat_cache_hits_total[5m])) / (sum(rate(wat_cache_hits_total[5m])) + sum(rate(wat_cache_misses_total[5m])))",
+        "legendFormat": "hit ratio"
+      }]
+    }
+  ]
+}
