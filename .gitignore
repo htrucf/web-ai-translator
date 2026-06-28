@@ -1,0 +1,27 @@
+# Local environments
+.env
+.env.local
+.venv/
+venv/
+venv312/
+node_modules/
+
+# Runtime/cache files
+__pycache__/
+.pytest_cache/
+*.pyc
+*.log
+*.tmp
+dist/
+dist-ssr/
+logs/
+workspace/
+tmp_pytest/
+browser_data/
+browser_data_test_chatgpt/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
